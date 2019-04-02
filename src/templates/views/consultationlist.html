@@ -1,0 +1,58 @@
+<div ng-controller="consultationListCtrl">
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <div class="bg-mattBlackLight">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="p-3">Consultation</h4>
+                    </div>
+                    <div class="col-4 pt-3 float-right">
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm"><i class="material-icons icon" style="font-size:20px;">search</i></span>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        </div>
+                        <!-- <label class="sr-only" for="inlineFormInputGroup">Search client</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                            <div class="input-group-text"><i class="material-icons icon">search</i></div>
+                            </div>
+                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search client">
+                        </div> -->
+                    </div>
+                </div>
+                <table class="table table-bordered table-light table-striped">
+                        <thead class="table-primary">
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Patient Details</th>
+                            <th scope="col">Visit DateTime</th>
+                            <th scope="col">Coordinator</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="patient in options.patientlist">
+                                <td>
+                                    {{$index + 1}}
+                                </td>
+                                <td>
+                                    {{patient.fullname}} 
+                                    <small>({{patient.gender}} / {{patient.age}})</small>
+                                    
+                                </td>
+                                <td>{{patient.registered}}</td>
+                                <td>{{patient.coordinator}}</td>
+                                <td>
+                                    <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip" data-placement="top" title="Start Consultation" ng-click="handlers.start(patient._id)">
+                                        <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                      </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="content" ng-controller="loginCtrl">
+    <div class="container-fluid">
+        <div class="row justify-content-md-center justify-content-sm-center justify-content-center">
+            <div class="col-md-4 my-3 col-sm-6 col-lg-3 col-6" style="top:10rem;">
+                <div class="bg-mattBlackLight px-3" >
+                    <form>
+                        <div class="row pb-2">
+                            <div class="col-md-12" style="background-color:white;">
+                                <img src="http://medassolutions.com/images/logo.svg" class="rounded mx-auto d-block" alt="...">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="for-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="_userName">Username</label>
+                                        <input type="text" ng-model="data.username" class="form-control form-control-sm" id="_userName" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="for-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="_password">Password</label>
+                                        <input type="password" ng-model="data.password" class="form-control form-control-sm" id="_password" placeholder="">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row p-3">
+                                    <div class="form-group col-md-12">
+                                        <button type="button" ng-click="handlers.login()" class="btn btn-primary btn-sm btn-block">Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

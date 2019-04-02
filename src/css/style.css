@@ -1,0 +1,140 @@
+.bg-mattBlackLight {
+  background-color: #303337 !important;
+}
+
+.text-mattBlackLight {
+  color: #303337 !important;
+}
+
+.bg-mattBlackDark, .nav-link:hover, .nav-link.active, body {
+  background-color: #212121 !important;
+}
+
+.text-mattBlackDark {
+  color: #212121 !important;
+}
+
+.bg-mattGray {
+  background-color: #878d8d !important;
+}
+
+.text-mattGray, .nav-link .text, .nav-link .icon, body {
+  color: #878d8d !important;
+}
+
+.bg-mattRed {
+  background-color: #ec6271 !important;
+}
+
+.text-mattRed, .nav-link:hover .icon, .nav-link:hover .text, .nav-link.active .icon, .nav-link.active .text {
+  color: #ec6271 !important;
+}
+
+.border-mattGray {
+  border: 0.0625rem solid #878d8d;
+}
+
+.wrapper {
+  margin-top: 3.5rem;
+}
+.wrapper .sideMenu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: 3.5rem auto auto;
+  width: 12.5rem;
+  transition: all ease 0.25s;
+  transform: translateX(-100%);
+  z-index: 2000;
+}
+.wrapper .content {
+  width: 100%;
+  margin-left: 0rem;
+  transition: all ease 0.25s;
+}
+.wrapper.active .sideMenu {
+  transform: translateX(0);
+}
+
+@media (min-width: 992px) {
+  .wrapper .sideMenu {
+    transform: translateX(0);
+  }
+  .wrapper .content {
+    margin-left: 12.5rem;
+  }
+  .wrapper.active .sideMenu {
+    width: 5rem;
+  }
+  .wrapper.active .sideMenu .nav-link {
+    text-align: center;
+  }
+  .wrapper.active .sideMenu .nav-link .icon {
+    margin-right: 0;
+  }
+  .wrapper.active .sideMenu .nav-link .text {
+    display: none;
+  }
+  .wrapper.active .content {
+    margin-left: 5rem;
+  }
+}
+.nav-link {
+  display: block;
+  white-space: nowrap;
+}
+.nav-link .icon {
+  margin-right: 0.25rem;
+  font-size: 1.875rem;
+  vertical-align: middle;
+  height: 2rem;
+  width: 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-link .text {
+  font-size: 0.875rem;
+}
+input {
+  position: relative;
+  width: 9.375rem;
+  height: 1.25rem;
+  color: white;
+}
+
+input:before {
+  position: absolute;
+  top: 0.1875rem;
+  left: 0.1875rem;
+  content: attr(data-date);
+  display: inline-block;
+  color: #495057;
+}
+
+input::-webkit-datetime-edit, input::-webkit-inner-spin-button, input::-webkit-clear-button {
+  display: none;
+}
+
+input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0.625rem;
+  right: 0;
+  color: #495057;
+  opacity: 1;
+}
+
+tags-input .tags {
+  height: calc(1.5em + 0.5rem + 2px);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+  box-shadow: none;
+}
+tags-input .tags .input {
+  color: #495057 !important;
+}
+
+/*# sourceMappingURL=style.css.map */
