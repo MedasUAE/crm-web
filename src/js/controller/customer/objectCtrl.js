@@ -1,6 +1,6 @@
 angular
     .module('crmApp')
-    .controller('registrationCtrl', ['$scope','$state','dataFactory', function($scope, $state, dataFactory){
+    .controller('customerCtrl', ['$scope','$state','dataFactory', function($scope, $state, dataFactory){
         $scope.data = {}
         $scope.options = {}
         $scope.handlers = {
@@ -35,17 +35,21 @@ angular
         }
 
         function back(){
-            $state.go('dashboard')
+            $state.go('dashboard.customers')
         }
 
         function loadTags(query) {
             return $scope.options.sources = dataFactory.getSources(query);
-
-       }
+        }
+        
+        function save(){
+            $state.go('dashboard.customers');
+        }
 
         function init() {
             $scope.options.nationalities = dataFactory.getNationality();
             $scope.options.sources = dataFactory.getSources();
             $scope.options.otherids = dataFactory.getOtherIds();
+            $scope.data.notes = dataFactory.getNotes();
         }
     }]);

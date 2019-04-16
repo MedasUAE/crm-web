@@ -1,0 +1,39 @@
+<div ng-controller="consultationListCtrl">
+    <div class="row">
+        <div class="col-md-12 my-3 p-0">
+            <!-- header directive -->
+            <header label="'Consultations'" icon="'notes'"></header>
+            <table class="table table-bordered table-light table-striped p-0 header-fixed">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">
+                            <!-- <input type="text" class="form-control form-control-sm" name="_name"> -->
+                            #&nbsp;&nbsp; Patient Details  
+                        </th>
+                        <th scope="col">Visit DateTime</th>
+                        <th scope="col">Coordinator</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="patient in options.patientlist">
+                        <td>
+                            {{$index + 1}}. &nbsp;&nbsp;
+                            {{patient.fullname}}
+                            <small>({{patient.gender}} / {{patient.age}})</small>
+
+                        </td>
+                        <td>{{patient.registered}}</td>
+                        <td>{{patient.coordinator}}</td>
+                        <td>
+                            <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip"
+                                data-placement="top" title="Start Consultation" ng-click="handlers.start(patient._id)">
+                                <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

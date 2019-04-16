@@ -10,14 +10,13 @@ angular
 
         // adjustSideBar();
 
-        $scope.registration = function(){
-            console.log("registration");
-            $state.go('dashboard.registration')
+        $scope.customer = function(){
+            $state.go('dashboard.customers')
         }
 
         $scope.calllist = function(){
             // $('#exampleModal').modal('show')
-            $state.go('dashboard.consultationlist')
+            $state.go('dashboard.consultations')
         }
 
         $scope.toggle = function(){

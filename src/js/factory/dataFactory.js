@@ -16,6 +16,15 @@ angular
             { text: 'cool' },
             { text: 'tags' }
         ];
+        let notes = [{
+            remark:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident accusantium, expedita labore assumenda ex eaque voluptatem quae quos numquam vitae eveniet omnis veritatis, officiis sunt et sint ea dolore consectetur! ",
+            createdBy: "Kainat",
+            createdDate: "12-12-2018"
+        },{
+            remark:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident accusantium, expedita labore assumenda ex eaque voluptatem quae quos numquam vitae eveniet omnis veritatis, officiis sunt et sint ea dolore consectetur! ",
+            createdBy: "Jeen",
+            createdDate: "01-01-2019"
+        }]
 
         function getPatients(id){
             if(!id) return patients;
@@ -29,6 +38,10 @@ angular
             return nationality;
         }
 
+        function getNotes() {
+            return notes;
+        }
+    
         function getOtherIds(){
             return otherids;
         }
@@ -90,6 +103,7 @@ angular
             getSources: getSources,
             checkTagToAdd: checkTagToAdd,
             getOtherIds: getOtherIds,
-            getPatients: getPatients
+            getPatients: getPatients,
+            getNotes: getNotes
         }
     });

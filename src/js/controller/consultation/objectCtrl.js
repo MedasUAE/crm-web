@@ -11,6 +11,4 @@ angular
             $scope.options.patientInfo = dataFactory.getPatients($stateParams["consultId"]);
             console.log(dataFactory.getPatients($stateParams["consultId"]));
         }
-
-        
     }]); 
