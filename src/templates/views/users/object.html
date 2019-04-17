@@ -1,0 +1,96 @@
+<div ng-controller="userObjectCtrl">
+    <div class="row">
+        <div class="col-md-12 my-3 p-0">
+            <!-- header directive -->
+            <header label="'User Registration'" icon="'note_add'"></header>
+            <form class="py-3">
+                <div class="row">
+                    <!-- left section -->
+                    <div class="offset-md-1 col-md-6">
+                        <!-- User name -->
+                        <div class="form-group row">
+                            <label for="userName" class="col-sm-3 col-form-label col-form-label-sm">User Name
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="data.userName" class="form-control form-control-sm" id="userName" placeholder="user Name">
+                            </div>
+                        </div>
+
+                        <!-- User name -->
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-3 col-form-label col-form-label-sm">Password
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="password" ng-model="data.password" class="form-control form-control-sm" id="password" placeholder="password">
+                            </div>
+                        </div>
+                        <!-- User full name -->
+                        <div class="form-group row">
+                            <label for="userLabel" class="col-sm-3 col-form-label col-form-label-sm">Full Name
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="data.userLabel" class="form-control form-control-sm" id="userLabel" placeholder="user full name">
+                            </div>
+                        </div>
+
+                        <!-- active Date -->
+                        <div class="form-group row">
+                                <label for="activeDate" class="col-sm-3 col-form-label col-form-label-sm">Active Date</label>
+                                <div class="col-sm-6">
+                                    <input date-input type="date" ng-model="data.activeDate" class="form-control form-control-sm" id="activeDate">
+                                </div>
+                            </div>
+
+                            <!-- active Status -->
+                        <div class="form-group row">
+                                <label for="activeStatus" class="col-sm-3 col-form-label col-form-label-sm">active Status</label>
+                                <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group"
+                                    aria-label="Basic example">
+                                    <button type="button"  class="btn btn-outline-secondary"
+                                        ng-class="{active: data.activeStatus == true }"
+                                        ng-click="handlers.activeClick('true')">Active</button>
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        ng-class="{active: data.activeStatus == false }"
+                                        ng-click="handlers.activeClick('false')">Deactive</button>
+                                    
+                                </div>
+                            </div>
+    
+                            <!-- user Type -->
+                        <div class="form-group row">
+                                <label class="col-sm-3 col-form-label col-form-label-sm">User Type</label>
+                                <div class="col-sm-4">
+                                        <select class="form-control form-control-sm" data-live-search="true" ng-model="data.userType">
+                                                <option value="">--Select option--</option>
+                                                <option ng-selected="data.userType == userType" ng-repeat="userType in options.userTypes" value="{{userType}}">{{userType}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                          <!-- Office -->
+                        <div class="form-group row">
+                                <label for="office" class="col-sm-3 col-form-label col-form-label-sm">Office</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control form-control-sm" data-live-search="true" ng-model="data.Office.userId">
+                                        <option value="">-Select option--</option>
+                                        <option  ng-selected="data.userType == office.officeId" ng-repeat="office in options.offices" value="{{office.officeId}}">{{office.officeName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                  
+                    </div>
+                   
+                </div>
+                <!-- buttons -->
+                <div class="row py-2">
+                    <div class="col-md-1 offset-md-1 px-1">
+                        <button type="button" class="btn btn-primary btn-block" ng-click="handlers.save()">SAVE</button>
+                    </div>
+                    <div class="col-md-1 px-1">
+                        <button type="submit" class="btn btn-secondary btn-block" ng-click="handlers.back()">CANCEL</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

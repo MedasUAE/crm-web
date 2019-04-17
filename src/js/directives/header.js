@@ -9,7 +9,8 @@ angular.module('crmApp')
                 label: '=',
                 buttonLabel: '=',
                 icon: '=',
-                state: '='
+                state: '=',
+                stateParam: '='
             },
             template: `
             <h3 class="mb-2 p-3">
@@ -27,7 +28,7 @@ angular.module('crmApp')
             `,
             controller: function ($scope,$state) {
                 $scope.new=function(){
-                    $state.go($scope.state);
+                    $state.go($scope.state, {id:"new"});
                 }
             }
         }

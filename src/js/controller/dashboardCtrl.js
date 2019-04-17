@@ -14,6 +14,11 @@ angular
             $state.go('dashboard.customers')
         }
 
+        $scope.user = function(){
+            $state.go('dashboard.users', {userId:123})
+        }
+
+
         $scope.calllist = function(){
             // $('#exampleModal').modal('show')
             $state.go('dashboard.consultations')

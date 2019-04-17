@@ -35,20 +35,15 @@
                     <li class="nav-item"><a href="#" ui-sref="dashboard" class="nav-link px-2"><i class="material-icons icon">dashboard</i><span class="text">Dashboard</span></a></li>
                     <li class="nav-item" ng-click="customer()"><a href="#" ui-sref="customer" class="nav-link px-2"><i class="material-icons icon">people</i><span class="text">Customers</span></a></li>
                     <li class="nav-item" ng-click="calllist()"><a href="#" ui-sref="consultation"  class="nav-link px-2"><i class="material-icons icon" >notes</i><span class="text">Consultations</span></a></li>
-                    <li class="nav-item"><a href="#" ui-sref="dashboard" class="nav-link px-2"><i class="material-icons icon">file_copy</i><span class="text">File</span></a></li>
+                    <li class="nav-item" ng-click="user()"><a href="#" ui-sref="users" class="nav-link px-2"><i class="material-icons icon">file_copy</i><span class="text">Users</span></a></li>
                     <li class="nav-item" ng-click="toggle()"><a href="#" class="nav-link px-2"><i class="material-icons icon">computer</i><span class="text">Demo</span></a></li>
                 </ui>
-            </div>
-            <div class="card-footer text-muted">
-                2 days ago
             </div>
         </div>
         <!-- main section -->
         <div class="content">
             <main>
-                <div ui-view class="container-fluid">
-                    
-                </div>
+                <div ui-view class="container-fluid"></div>
             </main>
         </div> 
     </div>

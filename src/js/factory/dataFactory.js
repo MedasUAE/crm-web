@@ -26,6 +26,17 @@ angular
             createdDate: "01-01-2019"
         }]
 
+        const userTypes = ["Admin","All"];
+        const offices = [{"officeId":101,"officeName":"medas"},{"officeId":102,"officeName":"medas 2"}];
+
+        function getUserType(){
+            return userTypes;
+        }
+
+        function getOffices(){
+            return offices;
+        }
+
         function getPatients(id){
             if(!id) return patients;
 
@@ -104,6 +115,8 @@ angular
             checkTagToAdd: checkTagToAdd,
             getOtherIds: getOtherIds,
             getPatients: getPatients,
-            getNotes: getNotes
+            getNotes: getNotes,
+            getUserType:getUserType,
+            getOffices:getOffices
         }
     });

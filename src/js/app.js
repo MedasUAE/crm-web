@@ -29,8 +29,16 @@ angular.module('crmApp', [
                     templateUrl: './views/consultation/list.html'
                 })
                 .state('dashboard.consultation', {
-                    url: '/consultation/:consultId',
+                    url: '/consultation/:id',
                     templateUrl: './views/consultation/object.html'
+                })
+                .state('dashboard.user', {
+                    url: '/user/:id',
+                    templateUrl: './views/users/object.html'
+                })
+                .state('dashboard.users', {
+                    url: '/users',
+                    templateUrl: './views/users/list.html'
                 })
                 .state('otherwise', {
                     url: '*path',
