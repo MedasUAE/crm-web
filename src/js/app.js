@@ -40,6 +40,14 @@ angular.module('crmApp', [
                     url: '/users',
                     templateUrl: './views/users/list.html'
                 })
+                .state('dashboard.call', {
+                    url: '/call/:id',
+                    templateUrl: './views/call/object.html'
+                })
+                .state('dashboard.calls', {
+                    url: '/calls',
+                    templateUrl: './views/call/list.html'
+                })
                 .state('otherwise', {
                     url: '*path',
                     templateUrl: './views/dashboard.html'
