@@ -1,8 +1,9 @@
 angular
     .module('crmApp')
-    .controller('callListCtrl', ['$scope', 'dataFactory', 'callFactory' , '$state', function ($scope, dataFactory, callFactory, $state) {
+    .controller('callListCtrl', ['$scope', 'dataFactory', 'callFactory' , '$state','$stateParams', function ($scope, dataFactory, callFactory, $state,$stateParams) {
         $scope.data = {}
         $scope.options = {}
+        $scope.data.customerInfo = {};
         $scope.handlers = {
             customerRegistration:customerRegistration
         }
@@ -19,10 +20,8 @@ angular
             })
         }
 
-        function customerRegistration(id) {
-            var customerInfo = $scope.data.customerInfo;
-            console.log(customerInfo);
-            $state.go('dashboard.customer', {id: id,customerInfo:customerInfo})
+        function customerRegistration(data) {
+             $state.go('dashboard.customer', {obj:data})
         }
        
     }]);

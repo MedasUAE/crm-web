@@ -1,4 +1,4 @@
-<div ng-controller="callObjectCtrl">
+<div ng-controller="callObjCtrl">
     <div class="row">
         <div class="col-md-12 my-3 p-0">
             <!-- header directive -->
@@ -12,7 +12,7 @@
                             <label for="name" class="col-sm-3 col-form-label col-form-label-sm">Name
                             </label>
                             <div class="col-sm-9">
-                                <input type="text" ng-model="data.name" class="form-control form-control-sm" id="name" placeholder="customer Name">
+                                <input type="text" ng-model="data.customerInfo.name" class="form-control form-control-sm" id="name" placeholder="customer Name">
                             </div>
                         </div>
                          <!-- customer/patient  mobile -->
@@ -26,17 +26,17 @@
 
                            <!-- Gender -->
                            <div class="form-group row">
-                                <label for="activeStatus" class="col-sm-3 col-form-label col-form-label-sm">Gender</label>
+                                <label for="gender" class="col-sm-3 col-form-label col-form-label-sm">Gender</label>
                                 <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group"
                                     aria-label="Basic example">
                                     <button type="button"  class="btn btn-outline-secondary"
                                         ng-class="{active: data.customerInfo.gender == 'male' }"
                                         ng-click="handlers.activeClick('male')">Male</button>
                                     <button type="button" class="btn btn-outline-secondary"
-                                        ng-class="{active: data.gender == 'female' }"
+                                        ng-class="{active: data.customerInfo.gender == 'female' }"
                                         ng-click="handlers.activeClick('female')">Female</button>
                                         <button type="button" class="btn btn-outline-secondary"
-                                        ng-class="{active: data.gender == 'other' }"
+                                        ng-class="{active: data.customerInfo.gender == 'other' }"
                                         ng-click="handlers.activeClick('other')">Other</button>
                                     
                                 </div>
@@ -45,9 +45,9 @@
                         <div class="form-group row">
                                 <label for="nationality" class="col-sm-3 col-form-label col-form-label-sm">Nationality</label>
                                    <div class="col-sm-4">
-                                        <select class="form-control form-control-sm" data-live-search="true" ng-model="data.nationality">
+                                        <select class="form-control form-control-sm" data-live-search="true" ng-model="data.customerInfo.nationality">
                                                 <option value="">--Select option--</option>
-                                                <option ng-selected="data.nationality == nationality" ng-repeat="nationality in options.nationalities" value="{{nationality}}">{{nationality}}</option>
+                                                <option ng-selected="data.customerInfo.nationality == nationality" ng-repeat="nationality in options.nationalities" value="{{nationality}}">{{nationality}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -61,16 +61,20 @@
                                     </select>
                                 </div>
                             </div>
-                             <!-- call Type -->
-                             <div class="form-group row">
-                                    <label for="callType" class="col-sm-3 col-form-label col-form-label-sm">Call Type</label>
-                                    <div class="col-sm-4">
-                                        <select class="form-control form-control-sm" data-live-search="true" ng-model="data.callType">
-                                            <option value="">-Select option--</option>
-                                            <option  ng-selected="data.callType == data.callType" ng-repeat="callType in options.callTypes" value="{{callType}}">{{callType}}</option>
-                                        </select>
-                                    </div>
-                                </div>
+                            <!-- call Type -->
+                           <div class="form-group row">
+                            <label for="callType" class="col-sm-3 col-form-label col-form-label-sm">Call Type</label>
+                            <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group"
+                                aria-label="Basic example">
+                                <button type="button"  class="btn btn-outline-secondary"
+                                    ng-class="{active: data.callType == 'Inbound' }"
+                                    ng-click="handlers.activeClick('Inbound')">Inbound</button>
+                                <button type="button" class="btn btn-outline-secondary"
+                                    ng-class="{active: data.callType == 'Outbound' }"
+                                    ng-click="handlers.activeClick('Outbound')">Outbound</button>
+                                 
+                            </div>
+                        </div>
 
                               <!-- followup Date -->
                         <div class="form-group row">
@@ -80,27 +84,44 @@
                                 </div>
                             </div>
                             
-                          <!-- status -->
-                        <div class="form-group row">
-                                <label for="status" class="col-sm-3 col-form-label col-form-label-sm">Status</label>
-                                <div class="col-sm-4">
-                                    <select class="form-control form-control-sm" data-live-search="true" ng-model="data.status">
-                                        <option value="">-Select option--</option>
-                                        <option  ng-selected="data.status == office.status" ng-repeat="status in options.statuss" value="{{status}}">{{status}}</option>
-                                    </select>
-                                </div>
+                        <!-- status -->
+                           <div class="form-group row">
+                            <label for="status" class="col-sm-3 col-form-label col-form-label-sm">Call Status</label>
+                            <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group"
+                                aria-label="Basic example">
+                                <button type="button"  class="btn btn-outline-secondary"
+                                    ng-class="{active: data.status == 'Open' }"
+                                    ng-click="handlers.activeClick('Open')">Open</button>
+                                <button type="button" class="btn btn-outline-secondary"
+                                    ng-class="{active: data.status == 'Close' }"
+                                    ng-click="handlers.activeClick('Close')">Close</button>
+                                 
                             </div>
-                            
+                        </div>
+
                              <!-- alert Type -->
-                        <div class="form-group row">
-                                <label for="alertType" class="col-sm-3 col-form-label col-form-label-sm">Alert Type</label>
-                                <div class="col-sm-4">
-                                    <select class="form-control form-control-sm" data-live-search="true" ng-model="data.alertType">
-                                        <option value="">-Select option--</option>
-                                        <option  ng-selected="data.alertType == data.alertType" ng-repeat="alertType in options.alertTypes" value="{{alertType}}">{{alertType}}</option>
-                                    </select>
-                                </div>
+                           <div class="form-group row">
+                            <label for="alertType" class="col-sm-3 col-form-label col-form-label-sm">Alert Type</label>
+                            <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group"
+                                aria-label="Basic example">
+                                <button type="button"  class="btn btn-outline-secondary"
+                                    ng-class="{active: data.alertType == 'remainder' }"
+                                    ng-click="handlers.activeClick('remainder')">Remainder</button>
+                                <button type="button" class="btn btn-outline-secondary"
+                                    ng-class="{active: data.alertType == 'note' }"
+                                    ng-click="handlers.activeClick('note')">Note</button>
+                                 
                             </div>
+                        </div>
+
+                          <!-- remark -->
+                          <div class="form-group row">
+                            <label for="remark" class="col-sm-3 col-form-label col-form-label-sm">Remark
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="data.remark" class="form-control form-control-sm" id="remark" placeholder="remark">
+                            </div>
+                        </div>
                   
                     </div>
                    

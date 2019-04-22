@@ -17,6 +17,14 @@ angular.module('crmApp')
             console.log(data)
             return $http.post(baseUrl+"call",data)
         }
+
+        /**
+         * method to save remark into the DB.
+         */
+        function createRemark(data) {
+              return $http.post(baseUrl+"remark",data)
+        }
+        
         /**
          * getCall to get one call  by Id from call API
          */
@@ -29,7 +37,8 @@ angular.module('crmApp')
         return {
             getCalls: getCalls,
             create:create,
-            getCall:getCall
+            getCall:getCall,
+            createRemark:createRemark
           
         }
 

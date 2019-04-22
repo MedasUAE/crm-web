@@ -18,6 +18,7 @@ angular.module('crmApp', [
                 })
                 .state('dashboard.customer', {
                     url: '/customer',
+                    params: { obj: null },
                     templateUrl: './views/customer/object.html'
                 })
                 .state('dashboard.customers', {
