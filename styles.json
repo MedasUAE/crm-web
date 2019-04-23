@@ -1,5 +1,6 @@
 [
     "./src/css/**/*.css",
+    "./node_modules/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.css",
     "./node_modules/bootstrap-select/dist/css/bootstrap-select.css",
     "./node_modules/ng-tags-input/build/ng-tags-input.css"
 ]

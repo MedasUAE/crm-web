@@ -1,6 +1,8 @@
 angular.module('crmApp', [
     'ui.router',
-    'ngTagsInput'
+    'ngTagsInput',
+    'mwl.calendar',
+    'ui.bootstrap'
 ])
     .config([
         '$stateProvider', '$urlRouterProvider',
@@ -31,6 +33,10 @@ angular.module('crmApp', [
                 .state('dashboard.consultation', {
                     url: '/consultation/:consultId',
                     templateUrl: './views/consultation/object.html'
+                })
+                .state('dashboard.appointment', {
+                    url: '/appointment',
+                    templateUrl: './views/appointment/appointment.html'
                 })
                 .state('otherwise', {
                     url: '*path',

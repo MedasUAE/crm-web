@@ -12,6 +12,7 @@ $colors: (
     "mattBlackLight": "#303337",
     "mattBlackDark": "#444444",
     "mattGray": "#878d8d",
+    "lightGray": "lightgray",
     "mattRed": "#ec6271"
 );
 
@@ -23,12 +24,25 @@ $colors: (
     .text-#{$colorName} {
         color: #{$colorValue} !important;
     }
+
+    .border-#{$colorName}-left{
+        border-left: #{$colorValue} 0.5px solid; 
+    }
+    .border-#{$colorName}-bottom{
+        border-bottom: #{$colorValue} 0.5px solid; 
+    }
+    .border-#{$colorName}-top{
+        border-top: #{$colorValue} 0.5px solid; 
+    }
+    .border-#{$colorName}-right{
+        border-right: #{$colorValue} 0.5px solid; 
+    }
 }
 
 body {
     // @extend .bg-mattBlackDark;
     @extend .text-mattBlackDark;
-    font-family: 'Raleway', sans-serif !important;
+    font-family: 'Lato', sans-serif !important;
 }
 
 .border-mattGray {
@@ -196,4 +210,38 @@ div .tags {
     .icon {
         font-size: rem(30px) !important;
     }
-  }
+}
+
+.month-container{
+    display: grid;
+    grid-template-columns: repeat(7,auto);
+    grid-template-rows: rem(30px) repeat(5, rem(110px));
+    margin-bottom: 5px;
+}
+.week-container {
+    display: grid;
+    grid-template-columns: 0.1fr repeat(7,auto);
+    grid-template-rows: rem(30px);
+    overflow-y: auto;
+    height: rem(550px);
+}
+
+.day-container {
+    display: grid;
+    grid-template-columns: 0.1fr auto;
+    grid-template-rows: rem(30px);
+    overflow-y: auto;
+    height: rem(550px);
+}
+
+.calendar-header {
+    background-color: grey;
+    color: white;
+    position: sticky;
+    top:0;
+}
+
+
+.calendar-item {
+    cursor: pointer;
+}
