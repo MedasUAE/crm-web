@@ -1,8 +1,6 @@
 angular.module('crmApp', [
     'ui.router',
-    'ngTagsInput',
-    'mwl.calendar',
-    'ui.bootstrap'
+    'ngTagsInput'
 ])
     .config([
         '$stateProvider', '$urlRouterProvider',
