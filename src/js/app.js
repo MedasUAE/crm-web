@@ -7,13 +7,14 @@ angular.module('crmApp', [
     .config([
         '$stateProvider', '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
-            $stateProvider.state('dashboard', {
-                url: '/dashboard',
-                templateUrl: './views/dashboard.html',
-                onEnter: ['$state', function ($state) {
-                    if (!validateToken()) $state.go('login');
-                }]
-            })
+            $stateProvider
+                .state('dashboard', {
+                    url: '/dashboard',
+                    templateUrl: './views/dashboard.html',
+                    onEnter: ['$state', function ($state) {
+                        if (!validateToken()) $state.go('login');
+                    }]
+                })
                 .state('login', {
                     url: '/login',
                     templateUrl: './views/login.html'
@@ -38,7 +39,7 @@ angular.module('crmApp', [
                 .state('dashboard.appointment', {
                     url: '/appointment',
                     templateUrl: './views/appointment/appointment.html'
-
+                })
                 .state('dashboard.user', {
                     url: '/user/:id',
                     templateUrl: './views/users/object.html'
