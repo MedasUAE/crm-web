@@ -1,7 +1,7 @@
 angular.module('crmApp')
     .factory('callFactory', function ($http) {
         var baseUrl = "http://localhost:3000/";
-        var call ={};
+      
         /**
          * method to get all calls from call API
          */

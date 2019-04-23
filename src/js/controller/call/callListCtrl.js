@@ -21,6 +21,7 @@ angular
         }
 
         function customerRegistration(data) {
+            data["reqFrom"] = "callList";
              $state.go('dashboard.customer', {obj:data})
         }
        

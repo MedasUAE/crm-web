@@ -7,6 +7,32 @@ angular.module('crmApp')
         }
 
         /**
+         * method to get all customers from customer API
+         */
+        function getCustomers() {
+            return $http.get(baseUrl+"customers");
+        }
+
+        /**
+         * method to filter out  customers from customer API
+         */
+       
+        //function filter(label,value) {
+            function filter(label,value) {
+          // return $http.get(baseUrl+"customers",{params: {fullName:value} });
+          var params = {}
+          if(label == 'fullName')   params["fullName"] = value;
+          if(label == 'residenceId')   params["residenceId"] = value;
+          if(label == 'mobile')   params["mobile"] = value;
+         
+          console.log(params);
+
+            return $http.get(baseUrl+"customers",{params});
+          // return $http.get(baseUrl+"customers",{params: {mobile:value} });
+           
+        }
+
+        /**
          * method to save customer into the DB.
          */
         function create(data) {
@@ -14,12 +40,13 @@ angular.module('crmApp')
             return $http.post(baseUrl+"customer",data)
         }
 
-       
 
         return {
            
             getRemark:getRemark,
-            create:create
+            create:create,
+            getCustomers:getCustomers,
+            filter:filter
           
         }
 

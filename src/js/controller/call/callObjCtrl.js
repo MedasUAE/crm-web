@@ -2,18 +2,21 @@ angular
     .module('crmApp')
     .controller('callObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'callFactory', function ($scope, $state, $stateParams, dataFactory, callFactory) {
         $scope.data = {}
+
         $scope.remarkData = {}
         $scope.data.customerInfo = {};
         $scope.options = {};
+        $scope.options.isHideFollowupDate = true;
         $scope.handlers = {
             activeClick: activeClick,
             save: save
         }
 
-
         init();
 
         function init() {
+            $scope.data["callType"] = "Inbound";
+            $scope.data["status"] = "Open";
             $scope.options.userTypes = dataFactory.getUserType();
             $scope.options.offices = dataFactory.getOffices();
             $scope.options.sources = dataFactory.getSources();
@@ -26,10 +29,7 @@ angular
             if (!$stateParams["id"] || $stateParams["id"] == "new") return;
             callFactory.getCall($stateParams["id"])
                 .then((response) => {
-                    // activeClick($scope.data.customerInfo.gender)
                     $scope.data = response.data.data;
-                    //activeClick($scope.data.customerInfo.gender)
-                    //  $scope.data.activeDate = new Date($scope.data.activeDate)
                 }, function (error) {
                     console.log(error);
                 })
@@ -40,16 +40,21 @@ angular
                     $scope.data.customerInfo.gender = value;
                 } else if (value == 'Inbound' || value == 'Outbound') {
                     $scope.data.callType = value;
-                } else if (value == 'Open' || value == 'Close') {
+                } else if (value == 'followup') {
+                    $scope.options.isHideFollowupDate = false;
+                    $scope.options.nextStep = value;
+                } else if (value == 'appointment') {
+                    $scope.options.nextStep = value;
+                } else if (value == 'Close') {
+                    $scope.options.nextStep = value;
                     $scope.data.status = value;
-                } else if (value == 'remainder' || value == 'note') {
-                    $scope.data.alertType = value;
 
                 }
             }
         }
 
         function save() {
+            console.log($scope.data)
             callFactory.create($scope.data)
                 .then((result) => {
                     $scope.remarkData.documentId = result.data.data._id;

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-12 my-3 p-0">
             <!-- header directive -->
-            <header label="'Registration'" icon="'note_add'"></header>
+            <header label="'Customer Registration'" icon="'note_add'"></header>
             <form class="py-3">
                 <div class="row">
                     <!-- left section -->
@@ -89,22 +89,13 @@
                          <div class="form-group row">
                             <label for="nationality" class="col-sm-3 col-form-label col-form-label-sm">Nationality</label>
                                <div class="col-sm-4">
-                                    <select class="form-control form-control-sm" data-live-search="true" ng-model="data.customerInfo.nationality">
+                                    <select class="form-control form-control-sm" data-live-search="true" ng-model="data.demography.nationality">
                                             <option value="">--Select option--</option>
                                             <option ng-selected="data.demography.nationality == nationality" ng-repeat="nationality in options.nationalities" value="{{nationality}}">{{nationality}}</option>
                                 </select>
                             </div>
                         </div>
-                    <!-- Source -->
-                    <div class="form-group row">
-                            <label for="source" class="col-sm-3 col-form-label col-form-label-sm">Source</label>
-                               <div class="col-sm-4">
-                                    <select class="form-control form-control-sm" data-live-search="true" ng-model="data.source">
-                                            <option value="">--Select option--</option>
-                                            <option ng-selected="data.source == source" ng-repeat="source in options.sources" value="{{source}}">{{source}}</option>
-                                </select>
-                            </div>
-                        </div>
+                   
                         <!-- note -->
                         <div class="form-group row">
                             <label for="_note" class="col-sm-3 col-form-label col-form-label-sm">Note</label>
