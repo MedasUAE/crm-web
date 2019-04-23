@@ -41,7 +41,7 @@ angular
                 } else if (value == 'Inbound' || value == 'Outbound') {
                     $scope.data.callType = value;
                 } else if (value == 'followup') {
-                    $scope.options.isHideFollowupDate = false;
+                    $scope.options.isHideFollowupDate = !$scope.options.isHideFollowupDate;
                     $scope.options.nextStep = value;
                 } else if (value == 'appointment') {
                     $scope.options.nextStep = value;
