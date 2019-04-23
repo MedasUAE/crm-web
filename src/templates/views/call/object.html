@@ -1,0 +1,141 @@
+<div ng-controller="callObjCtrl">
+    <div class="row">
+        <div class="col-md-12 my-3 p-0">
+            <!-- header directive -->
+            <header label="'Call Registration'" icon="'note_add'"></header>
+            <form class="py-3">
+                <div class="row">
+                    <!-- left section -->
+                    <div class="offset-md-1 col-md-6">
+                        <!-- customer/patient  name -->
+                        <div class="form-group row">
+                            <label for="name" class="col-sm-3 col-form-label col-form-label-sm">Name
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="data.customerInfo.name" class="form-control form-control-sm" id="name" placeholder="customer Name">
+                            </div>
+                        </div>
+                        <!-- customer/patient  mobile -->
+                        <div class="form-group row">
+                            <label for="mobile" class="col-sm-3 col-form-label col-form-label-sm">Mobile
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="data.mobile" class="form-control form-control-sm" id="mobile" placeholder="customer mobile">
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group row">
+                            <label for="gender" class="col-sm-3 col-form-label col-form-label-sm">Gender</label>
+                            <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-outline-secondary" ng-class="{active: data.customerInfo.gender == 'male' }" ng-click="handlers.activeClick('male')">Male</button>
+                                <button type="button" class="btn btn-outline-secondary" ng-class="{active: data.customerInfo.gender == 'female' }" ng-click="handlers.activeClick('female')">Female</button>
+                                <button type="button" class="btn btn-outline-secondary" ng-class="{active: data.customerInfo.gender == 'other' }" ng-click="handlers.activeClick('other')">Other</button>
+
+                            </div>
+                        </div>
+                        <!-- nationality -->
+                        <div class="form-group row">
+                            <label for="nationality" class="col-sm-3 col-form-label col-form-label-sm">Nationality</label>
+                            <div class="col-sm-4">
+                                <select class="form-control form-control-sm" data-live-search="true" ng-model="data.customerInfo.nationality">
+                                    <option value="">--Select option--</option>
+                                    <option ng-selected="data.customerInfo.nationality == nationality" ng-repeat="nationality in options.nationalities" value="{{nationality}}">{{nationality}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Source -->
+                        <div class="form-group row">
+                            <label for="source" class="col-sm-3 col-form-label col-form-label-sm">Source</label>
+                            <div class="col-sm-4">
+                                <select class="form-control form-control-sm" data-live-search="true" ng-model="data.source">
+                                    <option value="">--Select option--</option>
+                                    <option ng-selected="data.source == source" ng-repeat="source in options.sources" value="{{source}}">{{source}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- call Type -->
+                        <div class="form-group row">
+                            <label for="callType" class="col-sm-3 col-form-label col-form-label-sm">Call Type</label>
+                            <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-outline-secondary" ng-class="{active: data.callType == 'Inbound' }" ng-click="handlers.activeClick('Inbound')">Inbound</button>
+                                <button type="button" class="btn btn-outline-secondary" ng-class="{active: data.callType == 'Outbound' }" ng-click="handlers.activeClick('Outbound')">Outbound</button>
+
+                            </div>
+                        </div>
+
+                        <!-- Next Step -->
+                        <div class="form-group row">
+                            <label for="gender" class="col-sm-3 col-form-label col-form-label-sm">Next Step</label>
+                            <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group" aria-label="Basic example">
+                                <button type="button" class="btn btn-outline-secondary" ng-class="{active: options.nextStep == 'followup' }" ng-click="handlers.activeClick('followup')">Followup</button>
+                                <button type="button" class="btn btn-outline-secondary" ng-class="{active:  options.nextStep == 'appointment' }" ng-click="handlers.activeClick('appointment')">Appointment</button>
+                                <button type="button" class="btn btn-outline-secondary" ng-class="{active:  options.nextStep == 'close' }" ng-click="handlers.activeClick('Close')">Close</button>
+
+                            </div>
+                        </div>
+
+                        <!-- followup Date -->
+                        <div class="form-group row" ng-hide="options.isHideFollowupDate">
+                            <label for="followupDate" class="col-sm-3 col-form-label col-form-label-sm">Followup Date </label>
+                            <div class="col-sm-6">
+                                <input date-input type="date" ng-model="data.followupDate" class="form-control form-control-sm" id="followupDate">
+                            </div>
+                        </div>
+
+
+                        <!-- status -->
+                        <!-- <div class="form-group row">
+                            <label for="status" class="col-sm-3 col-form-label col-form-label-sm">Call Status</label>
+                            <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group"
+                                aria-label="Basic example">
+                                <button type="button"  class="btn btn-outline-secondary"
+                                    ng-class="{active: data.status == 'Open' }"
+                                    ng-click="handlers.activeClick('Open')">Open</button>
+                                <button type="button" class="btn btn-outline-secondary"
+                                    ng-class="{active: data.status == 'Close' }"
+                                    ng-click="handlers.activeClick('Close')">Close</button>
+                                 
+                            </div>
+                        </div> -->
+
+                        <!-- alert Type -->
+                        <!-- <div class="form-group row">
+                            <label for="alertType" class="col-sm-3 col-form-label col-form-label-sm">Alert Type</label>
+                            <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group"
+                                aria-label="Basic example">
+                                <button type="button"  class="btn btn-outline-secondary"
+                                    ng-class="{active: data.alertType == 'remainder' }"
+                                    ng-click="handlers.activeClick('remainder')">Remainder</button>
+                                <button type="button" class="btn btn-outline-secondary"
+                                    ng-class="{active: data.alertType == 'note' }"
+                                    ng-click="handlers.activeClick('note')">Note</button>
+                                 
+                            </div>
+                        </div> -->
+
+                        <!-- remark -->
+                        <div class="form-group row">
+                            <label for="remark" class="col-sm-3 col-form-label col-form-label-sm">Remark
+                            </label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="data.remark" class="form-control form-control-sm" id="remark" placeholder="remark">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- buttons -->
+                <div class="row py-2">
+                    <div class="col-md-1 offset-md-1 px-1">
+                        <button type="button" class="btn btn-primary btn-block" ng-click="handlers.save()">SAVE</button>
+                    </div>
+                    <div class="col-md-1 px-1">
+                        <button type="button" class="btn btn-secondary btn-block" ng-click="handlers.back()">CANCEL</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -20,6 +20,7 @@ angular.module('crmApp', [
                 })
                 .state('dashboard.customer', {
                     url: '/customer',
+                    params: { obj: null },
                     templateUrl: './views/customer/object.html'
                 })
                 .state('dashboard.customers', {
@@ -31,12 +32,28 @@ angular.module('crmApp', [
                     templateUrl: './views/consultation/list.html'
                 })
                 .state('dashboard.consultation', {
-                    url: '/consultation/:consultId',
+                    url: '/consultation/:id',
                     templateUrl: './views/consultation/object.html'
                 })
                 .state('dashboard.appointment', {
                     url: '/appointment',
                     templateUrl: './views/appointment/appointment.html'
+
+                .state('dashboard.user', {
+                    url: '/user/:id',
+                    templateUrl: './views/users/object.html'
+                })
+                .state('dashboard.users', {
+                    url: '/users',
+                    templateUrl: './views/users/list.html'
+                })
+                .state('dashboard.call', {
+                    url: '/call/:id',
+                    templateUrl: './views/call/object.html'
+                })
+                .state('dashboard.calls', {
+                    url: '/calls',
+                    templateUrl: './views/call/list.html'
                 })
                 .state('otherwise', {
                     url: '*path',

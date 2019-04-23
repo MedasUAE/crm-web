@@ -1,0 +1,39 @@
+<div ng-controller="userListCtrl">
+    <div class="row">
+        <div class="col-md-12 my-3 p-0">
+            <header label="'Users'" button-label="'New'" icon="'people'" state="'dashboard.user'"></header>
+            
+            <table class="table table-sm table-light table-striped p-0 header-fixed">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">#&nbsp;&nbsp; User Name</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Active Date</th>
+                        <!-- <th scope="col">Active Status</th> -->
+                        <th scope="col">User Type</th>
+                        <th scope="col">office</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="user in options.userlist" ng-class="{'table-success': user.activeStatus == true}" class="px-1 ">
+                        <td>
+                            {{$index + 1}}. &nbsp;&nbsp;
+                            {{user.userName}} 
+                        </td>
+                        <td>{{user.userLabel}}</td>
+                        <td>{{user.activeDate}}</td>
+                        <!-- <td>{{user.activeStatus}}</td> -->
+                        <td>{{user.userType}}</td>
+                        <td>{{user.office.officeName}}
+                                <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip"
+                                    data-placement="top" title="Start Consultation" ng-click="handlers.edit(user._id)">
+                                    <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
+                                </button>
+                        </td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
