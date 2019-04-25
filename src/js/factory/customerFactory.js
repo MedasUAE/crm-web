@@ -14,22 +14,22 @@ angular.module('crmApp')
         }
 
         /**
+         * method to get one customer by customer Id from customer API
+         */
+        function getCustomer(id) {
+            return $http.get(baseUrl+"customer/"+id);
+        }
+        /**
          * method to filter out  customers from customer API
          */
-       
-        //function filter(label,value) {
             function filter(label,value) {
           // return $http.get(baseUrl+"customers",{params: {fullName:value} });
           var params = {}
           if(label == 'fullName')   params["fullName"] = value;
           if(label == 'residenceId')   params["residenceId"] = value;
           if(label == 'mobile')   params["mobile"] = value;
-         
-          console.log(params);
-
             return $http.get(baseUrl+"customers",{params});
-          // return $http.get(baseUrl+"customers",{params: {mobile:value} });
-           
+              
         }
 
         /**
@@ -46,7 +46,8 @@ angular.module('crmApp')
             getRemark:getRemark,
             create:create,
             getCustomers:getCustomers,
-            filter:filter
+            filter:filter,
+            getCustomer:getCustomer
           
         }
 

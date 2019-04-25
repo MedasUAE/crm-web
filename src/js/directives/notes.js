@@ -22,7 +22,8 @@ angular.module('crmApp')
             </div>
             `,
             controller: function ($scope) {
-                console.log($scope.list);
+                //console.log($scope.list);
+                // list is comming from init of objctrl  not  here
              }
         }
     })

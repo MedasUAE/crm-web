@@ -1,16 +1,16 @@
 <div ng-controller="consultationListCtrl">
         <div class="row">
             <div class="col-md-12 my-3 p-0">
-                <header label="'Consultations'" button-label="'New'" icon="'people'" state="'dashboard.consultation'"></header>
-                
+                <!-- <header label="'Consultations'" button-label="'New'" icon="'people'" state="'dashboard.consultation'"></header>
+                 -->
                 <table class="table table-sm table-light table-striped p-0 header-fixed">
                     <thead class="table-primary">
                         <tr>
-                            <th scope="col">#&nbsp;&nbsp;Name</th>
-                            <th scope="col">Mobile</th>
+                            <th scope="col">#&nbsp;&nbsp;Hair Type</th>
+                            <th scope="col">Implant Type</th>
                              <!-- <th scope="col">Gender</th>  -->
-                                <th scope="col">ResidenceId</th>
-                            <th scope="col">Nationality</th>
+                                <th scope="col">noOfHair</th>
+                            <th scope="col">bloodTest</th>
                             <th scope="col">Action</th>
                            
                         </tr>
@@ -21,21 +21,21 @@
                             <td class="p-1"><input type="text"  data-ng-change="handlers.filter('mobile',mobile)" data-ng-model="mobile"  class="form-control form-control-sm"></td>
                             <td class="p-1"><input type="text"  data-ng-change="handlers.filter('residenceId',emirateId)" data-ng-model="emirateId"  class="form-control form-control-sm"></td>
                         </tr>
-                        <tr ng-repeat="customer in options.customerList" ng-class="{'table-success': customer.fileOpen == 'false'}" class="px-1 ">
+                        <tr ng-repeat="consultation in options.consultationList" ng-class="{'table-success': consultation.fileOpen == 'false'}" class="px-1 ">
                        
                             <td>
                                 {{$index + 1}}. &nbsp;&nbsp;
-                                {{customer.demography.fullName}}
+                                {{consultation.hairType}}
                             </td>
-                            <td>{{customer.contact.mobile[0]}}</td>
-                            <td>{{customer.demography.residenceId}}</td>
-                            <td>{{customer.demography.nationality}}</td>
+                            <td>{{consultation.implantType}}</td>
+                            <td>{{consultation.noOfHair}}</td>
+                            <td>{{consultation.bloodTest}}</td>
                             <!-- <td>{{customer.demography.residenceId}}</td> -->
                             <!-- <td>{{customer.fileOpen}}</td> -->
                            
                             <td>
                                 <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip"
-                                    data-placement="top" title="Start Consultation" ng-click="handlers.start(customer._id)">
+                                    data-placement="top" title="View Consultation" ng-click="handlers.start(customer._id)">
                                     <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
                                 </button>
                               

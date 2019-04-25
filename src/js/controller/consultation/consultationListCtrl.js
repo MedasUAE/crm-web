@@ -1,6 +1,6 @@
 angular
     .module('crmApp')
-    .controller('consultationListCtrl', ['$scope', 'dataFactory','customerFactory', '$state', function ($scope, dataFactory,customerFactory,$state) {
+    .controller('consultationListCtrl', ['$scope', 'dataFactory','consultationFactory', '$state', function ($scope, dataFactory,consultationFactory,$state) {
         $scope.data = {}
         $scope.options = {}
         $scope.options.params = {}
@@ -11,9 +11,9 @@ angular
         init();
 
         function init() {
-              customerFactory.getCustomers()
+            consultationFactory.getConsultations()
             .then((response)=>{
-                $scope.options.customerList = response.data.data;
+                $scope.options.consultationList = response.data.data;
                   console.log(response.data.data);
             },function(error){
                 console.log(error);

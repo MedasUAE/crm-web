@@ -31,6 +31,8 @@ angular
          const callTypes = ["Inbound","Outbound"];
         const statuss = ["Open","Close"];
         const alertTypes = ["Remainder","note"];
+        const hairTypes = ["A","B","C"];
+       
         
 
         function getUserType(){
@@ -58,7 +60,6 @@ angular
             return alertTypes;
         }
        
-
         function getPatients(id){
             if(!id) return patients;
 
@@ -80,14 +81,14 @@ angular
         }
 
 
-        function getTags(query) {
-            if(!query) return tags;
-            const result = tags.filter(s=>{
-                if(s.text.includes(query)) return s;
-            });
-            if(!result) return []
-            else return result;
-        }
+        // function getTags(query) {
+        //     if(!query) return tags;
+        //     const result = tags.filter(s=>{
+        //         if(s.text.includes(query)) return s;
+        //     });
+        //     if(!result) return []
+        //     else return result;
+        // }
 
         function checkTagToAdd(tag){
             const result = sources.filter(s=>{
@@ -125,6 +126,10 @@ angular
             return required;
         }
 
+        function getHairType() {
+             return hairTypes;
+        }
+
         return {
             validatePage: validate,
             dateFormat: dateFormat,
@@ -139,7 +144,8 @@ angular
             getOffices:getOffices,
             getCallTypes:getCallTypes,
             getStatuss:getStatuss,
-            getAlertTypes:getAlertTypes
+            getAlertTypes:getAlertTypes,
+            getHairType:getHairType
 
         }
     });
