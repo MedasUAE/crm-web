@@ -31,29 +31,29 @@ angular
         }
 
         function edit() {
-            $scope.data["customerId"] = $stateParams.id;
+            $scope.data["consultationId"] = $stateParams.id;
             console.log($scope.data)
             consultationFactory.update($scope.data)
                 .then((result) => {
-                    $scope.remarkData.documentId = result.data.data._id;
-                    console.log(result)
-                    $scope.remarkData.remark = $scope.data.remark;
-                    $scope.remarkData.collectionName = "Consultation";
-                    $scope.remarkData.createdBy = "101";
-                    $scope.remarkData.customerId = $stateParams.id;
+                    // $scope.remarkData.documentId = result.data.data._id;
+                    // console.log(result)
+                    // $scope.remarkData.remark = $scope.data.remark;
+                    // $scope.remarkData.collectionName = "Consultation";
+                    // $scope.remarkData.createdBy = "101";
+                    // $scope.remarkData.customerId = $stateParams.id;
 
-                    remarkFactory.createRemark($scope.remarkData)
-                        .then((result) => {
-                            console.log("saved Remark:" + result)
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        })
+                    // remarkFactory.createRemark($scope.remarkData)
+                    //     .then((result) => {
+                    //         console.log("saved Remark:" + result)
+                    //     })
+                    //     .catch((err) => {
+                    //         console.log(err);
+                    //     })
 
-                    console.log(result)
-                    $state.go('dashboard.consultations')
-                    // console.log($scope.data);
-                    console.log("saved");
+                    // console.log(result)
+                    // $state.go('dashboard.consultations')
+                    //  console.log($scope.data);
+                    // console.log("saved");
                 })
                 .catch((err) => {
                     console.log(err);
@@ -68,8 +68,10 @@ angular
             consultationFactory.getConsultationById($stateParams.id)
                 .then((response) => {
                     if (response.data.data) {
+                        $scope.options.consultationData = response.data.data;
                         $scope.data = response.data.data;
                         $scope.options.customerData = response.data.data.customerId;
+                        console.log( $scope.options.consultationData)
                         getRemarks()
                         $scope.options["addBtn"] = false;
                     }

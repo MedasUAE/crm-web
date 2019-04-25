@@ -1,6 +1,6 @@
 angular.module('crmApp')
     .factory('remarkFactory', function ($http) {
-        var baseUrl = "http://localhost:3003/";
+        var baseUrl = "http://localhost:3000/";
 
         /**
          * method to save remark into the DB.

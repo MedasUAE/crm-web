@@ -1,6 +1,6 @@
 angular.module('crmApp')
     .factory('customerFactory',function ($http) {
-        var baseUrl = "http://localhost:3003/";
+        var baseUrl = "http://localhost:3000/";
         
         function getRemark(id) {
             return $http.get(baseUrl+"remark/"+id);

@@ -31,7 +31,7 @@ angular
         }
 
         function edit() {
-            $scope.data["customerId"] = $stateParams.id;
+            $scope.data["consultationId"] = $scope.data._id;
             console.log($scope.data)
             consultationFactory.update($scope.data)
                 .then((result) => {
