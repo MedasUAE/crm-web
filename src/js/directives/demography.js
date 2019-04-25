@@ -182,8 +182,6 @@ angular.module('crmApp')
         </div>
 </div>
             `,
-            controller: function ($scope) {
-                console.log($scope.data)
-            }
+            controller: function ($scope) {}
         }
     })

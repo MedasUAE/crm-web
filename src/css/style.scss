@@ -215,7 +215,8 @@ div .tags {
 .month-container{
     display: grid;
     grid-template-columns: repeat(7,auto);
-    grid-template-rows: rem(30px) repeat(5, rem(110px));
+    grid-template-rows: rem(30px);
+    grid-auto-rows: rem(110px);
     margin-bottom: 5px;
 }
 .week-container {
@@ -223,7 +224,7 @@ div .tags {
     grid-template-columns: 0.1fr repeat(7,auto);
     grid-template-rows: rem(30px);
     overflow-y: auto;
-    height: rem(550px);
+    height: rem(560px);
 }
 
 .day-container {
@@ -231,7 +232,7 @@ div .tags {
     grid-template-columns: 0.1fr auto;
     grid-template-rows: rem(30px);
     overflow-y: auto;
-    height: rem(550px);
+    height: rem(560px);
 }
 
 .calendar-header {
@@ -243,5 +244,9 @@ div .tags {
 
 
 .calendar-item {
-    cursor: pointer;
+    cursor: pointer;  
+}
+
+.calendar-item-active {
+    background-color: antiquewhite;
 }

@@ -1,6 +1,6 @@
 angular
     .module('crmApp')
-    .controller('consultationObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'consultationFactory', 'customerFactory', 'remarkFactory', function ($scope, $state, $stateParams, dataFactory, consultationFactory, customerFactory, remarkFactory) {
+    .controller('consultationViewObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'consultationFactory', 'customerFactory', 'remarkFactory', function ($scope, $state, $stateParams, dataFactory, consultationFactory, customerFactory, remarkFactory) {
         $scope.data = {}
         $scope.remarkData = {}
         $scope.options = {}
@@ -62,38 +62,34 @@ angular
 
 
         function init() {
-            $scope.data["customerId"] = $stateParams.id;
-            $scope.options["addBtn"] = true;
-            $scope.options.customerData = $stateParams['obj'];
-            $scope.options.customerId = $stateParams.id;
+            $scope.options["addBtn"] = false;
 
-            // get customer details
-            customerFactory.getCustomer($stateParams.id)
-                .then((response) => {
-                    $scope.options.customerData = response.data.data;
-                }, function (error) {
-                    console.log(error);
-                })
             // get curomet consultation
-            consultationFactory.getConsultation($stateParams.id)
+            consultationFactory.getConsultationById($stateParams.id)
                 .then((response) => {
-                    if(response.data.data.length){
-                        $scope.data = response.data.data[0];
+                    if (response.data.data) {
+                        $scope.data = response.data.data;
+                        $scope.options.customerData = response.data.data.customerId;
+                        getRemarks()
                         $scope.options["addBtn"] = false;
                     }
                 }, function (error) {
                     console.log(error);
                 })
+
+        }
+
+        function activeClick(value) {
+            $scope.data.hairType = value;
+        }
+
+        function getRemarks() {
             // get customer remarks
-            remarkFactory.getAllRemarks($stateParams.id)
+            remarkFactory.getAllRemarks($scope.options.customerData._id)
                 .then((response) => {
                     $scope.options.noteList = response.data.data;
                 }, function (error) {
                     console.log(error);
                 })
-        }
-
-        function activeClick(value) {
-            $scope.data.hairType = value;
         }
     }]);

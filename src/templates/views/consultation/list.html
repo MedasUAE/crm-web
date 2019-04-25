@@ -1,8 +1,8 @@
 <div ng-controller="consultationListCtrl">
         <div class="row">
             <div class="col-md-12 my-3 p-0">
-                <!-- <header label="'Consultations'" button-label="'New'" icon="'people'" state="'dashboard.consultation'"></header>
-                 -->
+                <header label="'Consultations'"  icon="'people'" state="'dashboard.consultation'"></header>
+                
                 <table class="table table-sm table-light table-striped p-0 header-fixed">
                     <thead class="table-primary">
                         <tr>
@@ -35,7 +35,7 @@
                            
                             <td>
                                 <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip"
-                                    data-placement="top" title="View Consultation" ng-click="handlers.start(customer._id)">
+                                    data-placement="top" title="View Consultation" ng-click="handlers.view(consultation._id)">
                                     <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
                                 </button>
                               

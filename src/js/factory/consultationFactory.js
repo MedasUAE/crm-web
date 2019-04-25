@@ -1,10 +1,8 @@
 angular.module('crmApp')
     .factory('consultationFactory',function ($http) {
-        var baseUrl = "http://localhost:3000/";
+        var baseUrl = "http://localhost:3003/";
         
-        function getRemarks(id) {
-            return $http.get(baseUrl+"remarks?documentId="+id);
-        }
+        
 
         /**
          * method to get all consultation from consultation API
@@ -16,8 +14,12 @@ angular.module('crmApp')
         /**
          * method to get  consultation by customer Id from consultation API
          */
-        function getConsultation(id) {
-            return $http.get(baseUrl+"consultationbycustomerid/"+id);
+        function getConsultation(customerid) {
+            return $http.get(baseUrl+"consultations?customerId="+customerid);
+        }
+
+        function getConsultationById(id){
+            return $http.get(baseUrl+"consultation/"+id);
         }
 
         /**
@@ -58,11 +60,12 @@ angular.module('crmApp')
 
         return {
            
-            getRemarks:getRemarks,
+            
             create:create,
             getConsultations:getConsultations,
             filter:filter,
             getConsultation:getConsultation,
+            getConsultationById: getConsultationById,
             update:update
           
         }

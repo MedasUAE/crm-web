@@ -9925,7 +9925,8 @@ div .tags {
 .month-container {
   display: grid;
   grid-template-columns: repeat(7, auto);
-  grid-template-rows: 1.875rem repeat(5, 6.875rem);
+  grid-template-rows: 1.875rem;
+  grid-auto-rows: 6.875rem;
   margin-bottom: 5px;
 }
 
@@ -9934,7 +9935,7 @@ div .tags {
   grid-template-columns: 0.1fr repeat(7, auto);
   grid-template-rows: 1.875rem;
   overflow-y: auto;
-  height: 34.375rem;
+  height: 35rem;
 }
 
 .day-container {
@@ -9942,7 +9943,7 @@ div .tags {
   grid-template-columns: 0.1fr auto;
   grid-template-rows: 1.875rem;
   overflow-y: auto;
-  height: 34.375rem;
+  height: 35rem;
 }
 
 .calendar-header {
@@ -9954,6 +9955,10 @@ div .tags {
 
 .calendar-item {
   cursor: pointer;
+}
+
+.calendar-item-active {
+  background-color: antiquewhite;
 }
 
 /*# sourceMappingURL=style.css.map */
