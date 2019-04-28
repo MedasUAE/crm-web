@@ -50,8 +50,8 @@ angular
                     //         console.log(err);
                     //     })
 
-                    // console.log(result)
-                    // $state.go('dashboard.consultations')
+                     console.log(result)
+                     $state.go('dashboard.consultations')
                     //  console.log($scope.data);
                     // console.log("saved");
                 })

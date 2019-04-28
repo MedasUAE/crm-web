@@ -6,7 +6,8 @@ angular.module('crmApp')
         return {
             restrict: 'E',
             scope: {
-                data: '='
+                data: '=',
+                list: '='
             },
             template: `
             <div class="card-group row px-5">
@@ -108,13 +109,15 @@ angular.module('crmApp')
     </div>
     <div class="card col-4 p-0">
         <li class="list-group-item">
-            <div class="col-4 p-0">
-                <notes list="options.noteList"></notes>
+            <div class="col-12 p-0">
+                <notes list="list"></notes>
             </div>
         </li>
     </div>
 </div>
             `,
-            controller: function ($scope) {}
+            controller: function ($scope) {
+                //console.log($scope.list);
+            }
         }
     })
