@@ -1,49 +1,60 @@
 <div ng-controller="consultationListCtrl">
-        <div class="row">
-            <div class="col-md-12 my-3 p-0">
-                <header label="'Consultations'"  icon="'people'" state="'dashboard.consultation'"></header>
-                
-                <table class="table table-sm table-light table-striped p-0 header-fixed">
-                    <thead class="table-primary">
+    <div class="row">
+        <div class="col-md-12 my-3 p-0">
+            <header label="'Consultations'" icon="'people'" state="'dashboard.consultation'"></header>
+
+            <table class="table table-sm table-light table-striped p-0 header-fixed">
+                <thead class="table-primary">
+                    <tr>
                         <tr>
-                            <tr>
-                                <th scope="col">#&nbsp;&nbsp;Name</th>
-                                <th scope="col">Mobile</th>
-                                 <!-- <th scope="col">Gender</th>  -->
-                                    <th scope="col">ResidenceId</th>
-                                <th scope="col">Nationality</th>
-                                <th scope="col">Action</th>
-                               
-                            </tr>
-                           
+                            <th scope="col">#&nbsp;&nbsp;Name</th>
+                            <th scope="col">Mobile</th>
+                            <!-- <th scope="col">Gender</th>  -->
+                            <th scope="col">ResidenceId</th>
+                            <th scope="col">Nationality</th>
+                            <th scope="col">Action</th>
+
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="p-1"><input type="text"  data-ng-change="handlers.filter('fullName',name)" data-ng-model="name"  class="form-control form-control-sm"></td>
-                            <td class="p-1"><input type="text"  data-ng-change="handlers.filter('mobile',mobile)" data-ng-model="mobile"  class="form-control form-control-sm"></td>
-                            <td class="p-1"><input type="text"  data-ng-change="handlers.filter('residenceId',emirateId)" data-ng-model="emirateId"  class="form-control form-control-sm"></td>
-                        </tr>
-                        <tr ng-repeat="consultation in options.consultationList" ng-class="{'table-success': consultation.fileOpen == 'false'}" class="px-1 ">   
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-1">
+                            <input type="text" data-ng-change="handlers.filter('fullName',name)" data-ng-model="name" class="form-control form-control-sm">
+                        </td>
+                        <td class="p-1">
+                            <input type="text" data-ng-change="handlers.filter('mobile',mobile)" data-ng-model="mobile" class="form-control form-control-sm">
+                        </td>
+                        <td class="p-1">
+                            <input type="text" data-ng-change="handlers.filter('residenceId',emirateId)" data-ng-model="emirateId"
+                                class="form-control form-control-sm">
+                        </td>
+                    </tr>
+                    <tr ng-repeat="consultation in options.consultationList" ng-class="{'table-success': consultation.fileOpen == 'false'}" class="px-1 ">
                         <td>
-                            {{$index + 1}}. &nbsp;&nbsp;
-                            {{consultation.customerId.demography.fullName}}
+                            {{$index + 1}}. &nbsp;&nbsp; {{consultation.customerId.demography.fullName}}
                         </td>
                         <td>{{consultation.customerId.contact.mobile[0]}}</td>
                         <td>{{consultation.customerId.demography.residenceId}}</td>
                         <td>{{consultation.customerId.demography.nationality}}</td>
-                           
-                            <td>
-                                <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip"
-                                    data-placement="top" title="View Consultation" ng-click="handlers.view(consultation._id)">
-                                    <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
-                                </button>
-                              
-                              
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+
+                        <td>
+                            <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip" data-placement="top" title="View Consultation"
+                                ng-click="handlers.view(consultation._id)">
+                                <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
+                            </button>
+
+                            <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip" data-placement="top" title="Start Payment"
+                                ng-click="handlers.startPayment(consultation)">
+                                <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
+                            </button>
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>

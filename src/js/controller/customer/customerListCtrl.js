@@ -6,8 +6,8 @@ angular
         $scope.options.params = {}
         $scope.handlers = {
             add: add,
-        filter:filter,
-        startConsultation : startConsultation
+        filter:filter
+       
         }
         init();
 
@@ -25,10 +25,6 @@ angular
             $state.go('dashboard.customer')
         }
 
-        function startConsultation(data) {    
-            $state.go('dashboard.consultation',{id: data._id,obj:data})
-           
-        }
 
        function filter(label,value) {
              customerFactory.filter(label,value)

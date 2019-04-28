@@ -59,6 +59,15 @@ angular.module('crmApp', [
                     url: '/calls',
                     templateUrl: './views/call/list.html'
                 })
+                .state('dashboard.payment', {
+                    url: '/payment/:id',
+                    params: { obj: null },
+                    templateUrl: './views/payment/object.html'
+                })
+                .state('dashboard.payments', {
+                    url: '/payments',
+                    templateUrl: './views/payment/list.html'
+                })
                 .state('otherwise', {
                     url: '*path',
                     templateUrl: './views/dashboard.html'

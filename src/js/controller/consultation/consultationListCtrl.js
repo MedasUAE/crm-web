@@ -7,7 +7,8 @@ angular
         $scope.handlers = {
             add: add,
             filter: filter,
-            view: view
+            view: view,
+            startPayment
         }
         init();
 
@@ -37,6 +38,11 @@ angular
 
         function view(id) {
             $state.go("dashboard.viewconsultation", { id: id })
+        }
+        function startPayment(data) { 
+            console.log(data);   
+            $state.go('dashboard.payment',{id: data.customerId._id,obj:data})
+           
         }
 
 
