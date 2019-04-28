@@ -59,6 +59,7 @@ angular.module('crmApp')
             </ul>
         </div>
     </div>
+    
     <div class="card col-4 p-0">
         <div class="card-body p-0">
             <ul class="list-group list-group-flush">
