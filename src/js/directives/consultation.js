@@ -10,8 +10,8 @@ angular.module('crmApp')
                 list: '='
             },
             template: `
-            <div class="card-group row px-5">
-    <div class="card col-4 p-0">
+            <div class="card-group row pl-5">
+    <div class="card col-6 p-0">
         <div class="card-body p-0">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -59,7 +59,7 @@ angular.module('crmApp')
             </ul>
         </div>
     </div>
-    <div class="card col-4 p-0">
+    <div class="card col-6 p-0">
         <div class="card-body p-0">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
@@ -107,13 +107,7 @@ angular.module('crmApp')
             </ul>
         </div>
     </div>
-    <div class="card col-4 p-0">
-        <li class="list-group-item">
-            <div class="col-12 p-0">
-                <notes list="list"></notes>
-            </div>
-        </li>
-    </div>
+   
 </div>
             `,
             controller: function ($scope) {
