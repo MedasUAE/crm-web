@@ -2,7 +2,7 @@
  * Directive for all headers
  */
 angular.module('crmApp')
-    .directive('consultation', function () {
+    .directive('consult', function () {
         return {
             restrict: 'E',
             scope: {
