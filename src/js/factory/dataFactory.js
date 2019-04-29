@@ -32,12 +32,17 @@ angular
         const statuss = ["Open","Close"];
         const alertTypes = ["Remainder","note"];
         const hairTypes = ["A","B","C"];
+        const paymentTypes =  ["Cash", "Cheque","Card"];
        
         
 
         function getUserType(){
             return userTypes;
         }
+        function getPaymentTypes(){
+            return paymentTypes;
+        }
+        
 
         function getOffices(){
             return offices;
@@ -145,7 +150,8 @@ angular
             getCallTypes:getCallTypes,
             getStatuss:getStatuss,
             getAlertTypes:getAlertTypes,
-            getHairType:getHairType
+            getHairType:getHairType,
+            getPaymentTypes:getPaymentTypes
 
         }
     });
