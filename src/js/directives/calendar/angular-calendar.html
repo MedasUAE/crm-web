@@ -1,0 +1,72 @@
+<div class="row pb-2">
+    <div class="col-8 col-sm-7 col-md-8 pl-4">
+        <h4><strong>{{options.currentMonth}}</strong> {{options.currentYear}}</h4>
+    </div>
+    <div class="col-2 col-md-2 col-sm-2">
+        <div class="btn-group btn-group-sm btn-block" role="group">
+            <button type="button" class="btn btn-outline-secondary p-0" ng-click="prev()"> <i
+                    class="material-icons icon">keyboard_arrow_left</i> </button>
+            <button type="button" class="btn btn-outline-secondary" ng-click="today()">Today</button>
+            <button type="button" class="btn btn-outline-secondary p-0" ng-click="next()"> <i
+                    class="material-icons icon">keyboard_arrow_right</i> </button>
+        </div>
+    </div>
+    <div class="col-2 col-md-2 col-sm-2">
+        <div class="btn-group btn-group-sm btn-block" role="group">
+            <button type="button" class="btn btn-outline-secondary" ng-click="calendarBtnClick('month')"
+                ng-class="{active: options.calendarView == 'month'}">Month</button>
+            <button type="button" class="btn btn-outline-secondary" ng-click="calendarBtnClick('week')"
+                ng-class="{active: options.calendarView == 'week'}">Week</button>
+            <button type="button" class="btn btn-outline-secondary" ng-click="calendarBtnClick('day')"
+                ng-class="{active: options.calendarView == 'day'}">Day</button>
+        </div>
+    </div>
+</div>
+
+<!-- month -->
+<div class="month-container border-mattGray-top border-mattGray-right" ng-show="options.calendarView == 'month'">
+    <div class="calendar-header border-mattGray-bottom border-mattGray-right align-text-bottom"
+        ng-repeat="day in options.arrWeekDays">
+        <p class="text-right pr-1 align-text-bottom">{{day}}</p>
+    </div>
+    <div class="calendar-item border-mattGray-left border-mattGray-bottom"
+        ng-class="{ 'calendar-item-active': mDay.todayflag }" ng-repeat="mDay in options.monthDays track by $index">
+        <p class="text-right pr-1">{{mDay.day}}</p>
+    </div>
+</div>
+
+<!--week-->
+<div ng-show="options.calendarView == 'week'">
+    <div class="week-container border-lightGray-top border-lightGray-right">
+        <div class="calendar-header border-lightGray-bottom border-lightGray-left">
+            <p class="text-right pr-1 align-text-bottom"></p>
+        </div>
+        <div class="calendar-header border-lightGray-bottom border-lightGray-right align-text-bottom"
+            ng-repeat="day in options.arrWeekDates">
+            <p class="text-center pr-1 align-text-bottom">{{day.day}}</p>
+        </div>
+        <div ng-click="timeClick(time)" class="calendar-item border-lightGray-left border-lightGray-bottom"
+            ng-repeat="time in options.times track by $index">
+            <p class="text-right pr-1" ng-if="!time.hide">{{time}}</p>
+        </div>
+    </div>
+</div>
+
+<!-- day -->
+<div class="row">
+    <div class="col-6">
+        <div ng-show="options.calendarView == 'day'" class="day-container border-lightGray-top border-lightGray-right">
+            <div class="calendar-header border-lightGray-bottom border-lightGray-left">
+                <p class="text-right pr-1 align-text-bottom"></p>
+            </div>
+            <div class="calendar-header border-lightGray-bottom border-lightGray-right align-text-bottom">
+                <p class="text-center pr-1 align-text-bottom">{{options.currentDate}}</p>
+            </div>
+            <div ng-click="timeClick(time)" class="calendar-item border-lightGray-left border-lightGray-bottom"
+                ng-repeat="time in options.times track by $index">
+                <p class="text-right pr-1" ng-if="!time.hide">{{time}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-6"></div>
+</div>
