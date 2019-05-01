@@ -14,9 +14,8 @@ angular
             activeClick: activeClick,
             back: back,
             dateChange: dateChange,
-            genderClick: genderClick,
-            loadTags: loadTags,
-            onTagAdding: onTagAdding
+           loadTags: loadTags
+          
         }
 
         init();
@@ -26,13 +25,6 @@ angular
             $scope.data.age = dataFactory.ageCal($scope.data.dob);
         }
 
-        function genderClick(option) {
-            $scope.data.gender = option;
-        }
-
-        function onTagAdding(tag) {
-            return dataFactory.checkTagToAdd(tag);
-        }
 
         function back() {
             $state.go('dashboard.customers')
@@ -46,33 +38,17 @@ angular
             console.log("data mmmm:"+$scope.data)
             customerFactory.create($scope.data)
                 .then((result) => {
-                    $scope.remarkData.documentId = result.data.data._id;
-                    console.log(result)
-                    $scope.remarkData.remark = $scope.data.remark;
-                    $scope.remarkData.collectionName = "customer";
-                    $scope.remarkData.createdBy = "101";
-                    $scope.remarkData.customerId = result.data.data._id;
-
-                    remarkFactory.createRemark($scope.remarkData)
-                        .then((result) => {
-                            console.log("saved Remark:" + result)
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        })
                     if ($scope.options.reqFrom == 'callList') {
                         console.log($scope.options.reqFrom)
-                        remarkFactory.updateRemark({ "id": $scope.options.callId, "customerId": $scope.remarkData.customerId })
+                        remarkFactory.updateRemark({ "id": $scope.options.callId, "customerId": result.data.data._id})
                             .then((result) => {
-                                console.log("update Remark:" + result)
-                            }).catch((err) => {
+                              }).catch((err) => {
                                 console.log(err);
                             })
                     }
 
-                    console.log(result)
                     $state.go('dashboard.customers');
-                    console.log("saved");
+                   
                 })
                 .catch((err) => {
                     console.log(err);
@@ -103,9 +79,7 @@ angular
                     })
             } else if(result && result.reqFrom == 'customerList') {
                 $scope.options.reqFrom = result.reqFrom;
-                console.log("*****************************:"+$scope.options.reqFrom);
-                console.log( $scope.options.reqFrom);
-            }
+                    }
         }
 
         function activeClick(value) {

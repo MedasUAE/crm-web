@@ -111,7 +111,7 @@ angular.module('crmApp')
 </div>
             `,
             controller: function ($scope) {
-                console.log($scope.data);
+               // console.log($scope.data);
             }
         }
     })

@@ -63,6 +63,8 @@ angular
 
         function init() {
             $scope.data["customerId"] = $stateParams.id;
+            $scope.data.hairType = '';
+            console.log( $scope.data);
             $scope.options["addBtn"] = true;
             $scope.options.customerData = $stateParams['obj'];
             $scope.options.customerId = $stateParams.id;
@@ -70,30 +72,48 @@ angular
             // get customer details
             customerFactory.getCustomer($stateParams.id)
                 .then((response) => {
-                    $scope.options.customerData = response.data.data;
+                    $scope.options.customerData = response.data.data.customerResult;
+                    $scope.options.noteList = response.data.data.remarkResult;
+                    // const data = {
+                    //     noOfHair : $scope.options.consultationData.remark,
+                    //     implantType : $scope.options.consultationData.rhinoplasty,
+                    //     remark : $scope.options.consultationData.remark,
+                    //     implantArea : $scope.options.consultationData.remark,
+                    //     prp : $scope.options.consultationData.remark,
+                    //     bloodTest : $scope.options.consultationData.remark,
+                        
+                    //     payment : {total: $scope.options.consultationData.payment.total},    
+                    // }
+                    $scope.data = response.data.data.consultResult;
+                    $scope.options["addBtn"] = false;
+                   
+
+                   
                 }, function (error) {
                     console.log(error);
                 })
             // get curomet consultation
-            consultationFactory.getConsultation($stateParams.id)
-                .then((response) => {
-                    if(response.data.data.length){
-                        $scope.data = response.data.data[0];
-                        $scope.options["addBtn"] = false;
-                    }
-                }, function (error) {
-                    console.log(error);
-                })
-            // get customer remarks
-            remarkFactory.getAllRemarks($stateParams.id)
-                .then((response) => {
-                    $scope.options.noteList = response.data.data;
-                }, function (error) {
-                    console.log(error);
-                })
+            // consultationFactory.getConsultation($stateParams.id)
+            //     .then((response) => {
+            //         if(response.data.data.length){
+            //             $scope.data = response.data.data[0];
+            //             $scope.options["addBtn"] = false;
+            //         }
+            //     }, function (error) {
+            //         console.log(error);
+            //     })
+            // // get customer remarks
+            // remarkFactory.getAllRemarks($stateParams.id)
+            //     .then((response) => {
+            //         $scope.options.noteList = response.data.data;
+            //     }, function (error) {
+            //         console.log(error);
+            //     })
         }
 
         function activeClick(value) {
-            $scope.data.hairType = value;
+            console.log(value);
+            console.log($scope.data);
+          // $scope.data.hairType = value;
         }
     }]);

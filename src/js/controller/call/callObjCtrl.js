@@ -54,29 +54,10 @@ angular
         }
 
         function save() {
-            console.log($scope.data)
-            callFactory.create($scope.data)
-                .then((result) => {
-                    $scope.remarkData.documentId = result.data.data._id;
-                    console.log(result)
-                    $scope.remarkData.remark = $scope.data.remark;
-                    $scope.remarkData.collectionName = "call";
-                    $scope.remarkData.createdBy = "101";
-                    $scope.remarkData.customerId = "5cb471b427abca3044b38aaa";
-
-                    callFactory.createRemark($scope.remarkData)
-                        .then((result) => {
-                            console.log("saved Remark:" + result)
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        })
-
-                    console.log(result)
+             callFactory.create($scope.data)
+                .then((result) => { 
                     $state.go('dashboard.calls')
-                    // console.log($scope.data);
-                    console.log("saved");
-                })
+                    })
                 .catch((err) => {
                     console.log(err);
                 })

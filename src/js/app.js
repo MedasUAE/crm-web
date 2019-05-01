@@ -35,9 +35,9 @@ angular.module('crmApp', [
                     params: { obj: null },
                     templateUrl: './views/consultation/object.html'
                 })
-                .state('dashboard.viewconsultation', {
-                    url: '/viewconsultation/:id',
-                    templateUrl: './views/consultation/view.html'
+                .state('dashboard.secondconsultation', {
+                    url: '/secondconsultation/:id',
+                    templateUrl: './views/consultation/secondObject.html'
                 })
                 .state('dashboard.appointment', {
                     url: '/appointment',

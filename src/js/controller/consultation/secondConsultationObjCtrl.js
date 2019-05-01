@@ -1,6 +1,6 @@
 angular
     .module('crmApp')
-    .controller('consultationViewObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'consultationFactory', 'customerFactory', 'remarkFactory', function ($scope, $state, $stateParams, dataFactory, consultationFactory, customerFactory, remarkFactory) {
+    .controller('secondConsultationObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'consultationFactory', 'customerFactory', 'remarkFactory', function ($scope, $state, $stateParams, dataFactory, consultationFactory, customerFactory, remarkFactory) {
         $scope.data = {}
         $scope.remarkData = {}
         $scope.options = {}
@@ -49,19 +49,23 @@ angular
         function init() {
             $scope.options["addBtn"] = false;
 
-            // get curomet consultation
+            console.log($stateParams.id);
+            // get  consultation by consult Id
             consultationFactory.getConsultationById($stateParams.id)
                 .then((response) => {
-                    if (response.data.data) {
-                        $scope.options.consultationData = response.data.data;
-                        $scope.options.consultationData.remark ="";
+                    console.log(response);
+                    // if (response.data.data) {
+                         $scope.options.consultationData = response.data.data.consultResult;
+                    //     $scope.options.consultationData.remark ="";
                      
-                        $scope.data = response.data.data;
-                        $scope.options.customerData = response.data.data.customerId;
-                        console.log( $scope.options.consultationData)
-                        getRemarks()
-                        $scope.options["addBtn"] = false;
-                    }
+                    //     $scope.data = response.data.data;
+                         $scope.options.customerData = response.data.data.consultResult.customerId;
+                         $scope.options.noteList = response.data.data.remarkResult;
+                         $scope.options["addBtn"] = false;
+                    //     console.log( $scope.options.consultationData)
+                    //     getRemarks()
+                    //     $scope.options["addBtn"] = false;
+                    // }
                 }, function (error) {
                     console.log(error);
                 })
