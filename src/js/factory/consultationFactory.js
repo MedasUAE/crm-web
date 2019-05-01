@@ -102,7 +102,7 @@ angular.module('crmApp')
                 medicalsummary: consultObj.medicalsummary,
                 installments: consultObj.installments,
                 payment,
-                consultationId: consultObj._id
+                consultationId: consultObj.consultationId
             }
         }
         function sampleDetails(consultObj){

@@ -35,16 +35,13 @@ angular
         }
 
         function save() {
-            console.log("data mmmm:"+$scope.data)
-            customerFactory.create($scope.data)
+           customerFactory.create($scope.data)
                 .then((result) => {
                     if ($scope.options.reqFrom == 'callList') {
-                        console.log($scope.options.reqFrom)
-                        remarkFactory.updateRemark({ "id": $scope.options.callId, "customerId": result.data.data._id})
+                          remarkFactory.updateRemark({ "id": $scope.options.callId, "customerId": result.data.data._id})
                             .then((result) => {
                               }).catch((err) => {
-                                console.log(err);
-                            })
+                              })
                     }
 
                     $state.go('dashboard.customers');
@@ -60,16 +57,13 @@ angular
             $scope.options.sources = dataFactory.getSources();
             $scope.options.otherids = dataFactory.getOtherIds();
             var result = $stateParams['obj'];
-            console.log(result)
-            if (result && result.reqFrom == 'callList') {
+             if (result && result.reqFrom == 'callList') {
                 $scope.data.demography.fullName = result.customerInfo.name;
                 $scope.data.demography.gender = result.customerInfo.gender;
                 $scope.data.demography.nationality = result.customerInfo.nationality;
                 $scope.data.contact.mobile = result.mobile;
                 $scope.options.reqFrom = result.reqFrom;
-                
-                console.log( $scope.options.reqFrom);
-                  customerFactory.getRemark(result._id)
+                   customerFactory.getRemark(result._id)
                     .then((response) => {
                         $scope.options.callId = result._id;
                         $scope.options.noteList.push(response.data.data);

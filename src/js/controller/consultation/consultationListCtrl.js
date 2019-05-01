@@ -36,11 +36,11 @@ angular
                 })
         };
 
-        function secondConsultation(id) {
-            $state.go("dashboard.secondconsultation", { id: id })
+        function secondConsultation(consultationId) {
+            $state.go("dashboard.secondconsultation", { id: consultationId })
         }
         function startPayment(data) { 
-            console.log(data);   
+           // console.log(data);   
             $state.go('dashboard.payment',{id: data.customerId._id,obj:data})
            
         }
