@@ -1,14 +1,14 @@
 angular
     .module('crmApp')
-    .controller('consultationListCtrl', ['$scope', 'dataFactory', 'consultationFactory', '$state', function ($scope, dataFactory, consultationFactory, $state) {
+    .controller('consultationListCtrl', ['$scope', 'consultationFactory','remainderFactory', '$state', function ($scope,consultationFactory,remainderFactory,$state) {
         $scope.data = {}
         $scope.options = {}
-        $scope.options.params = {}
-        $scope.handlers = {
+         $scope.handlers = {
             add: add,
             filter: filter,
             secondConsultation : secondConsultation,
-            startPayment
+            startPayment,
+            fileOpenRemainder:fileOpenRemainder
         }
         init();
 
@@ -42,8 +42,18 @@ angular
         function startPayment(data) { 
            // console.log(data);   
             $state.go('dashboard.payment',{id: data.customerId._id,obj:data})
-           
         }
+        function fileOpenRemainder(data) { 
+             remainderFactory.createRemainderFileOpen({customerId:data.customerId._id,date: data.createdAt,type:"FileOpen"})
+             .then((result) => { 
+                 console.log(result);
+                    })
+             .catch((err) => {
+                 console.log(err);
+             })
 
+           
+         }
+        
 
     }]);

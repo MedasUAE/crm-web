@@ -60,8 +60,8 @@ angular.module('crmApp')
         function checkPaymentStatus(consultObj, installment) {
             let status = "Open";
             // total payment is equal to installment amount when emi is 1
-           // (consultObj.payment.emis == 1 && consultObj.payment.total == installment.amount) ? status = "Close" : status = "Open";
-           status =  (consultObj.payment.emis == 1 && consultObj.payment.total == installment.amount) ? "Close" : "Open";
+            (consultObj.payment.emis == 1 && consultObj.payment.total == installment.amount) ? status = "Close" : status = "Open";
+          // status =  (consultObj.payment.emis == 1 && consultObj.payment.total == installment.amount) ? "Close" : "Open";
           
             // let totalInstallmentAmount = parseInt(installment.amount);
             let totalInstallmentAmount = parseInt(installment.amount);
@@ -69,6 +69,7 @@ angular.module('crmApp')
             if (typeof (consultObj.installments) == "object") {
                  consultObj.installments.forEach(ins => {
                  totalInstallmentAmount = totalInstallmentAmount + parseInt(ins.amount);
+              
                 });
                 (totalInstallmentAmount == consultObj.payment.total) ? status = "Close" : status = "Open";
             }
@@ -77,6 +78,7 @@ angular.module('crmApp')
 
         function paymentPostData(consultObj) {
             if(consultObj.installments.length == 0) consultObj = sampleDetails(consultObj);
+            console.log(consultObj);
           
             // creating installament obj
             let installmentObj = {
@@ -95,9 +97,11 @@ angular.module('crmApp')
             // adding installment in array
             consultObj.installments.push(installmentObj)
             //decrease the emi if payment is done before
-            if (payment.emis > consultObj.installments.length && payment.status == "Close") payment.emis = consultObj.installments.length;
-            else if (payment.emis <= consultObj.installments.length && payment.status != "Close") payment.emis = consultObj.installments.length + 1;
-
+           
+            if (payment.emis > consultObj.installments.length && payment.status == "Close")  payment.emis = consultObj.installments.length;
+             
+            else if (payment.emis <= consultObj.installments.length && payment.status != "Close")  payment.emis = consultObj.installments.length + 1;
+         
             return {
                 medicalsummary: consultObj.medicalsummary,
                 installments: consultObj.installments,

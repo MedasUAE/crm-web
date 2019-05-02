@@ -1,6 +1,6 @@
 angular
     .module('crmApp')
-    .controller('paymentObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'consultationFactory', 'customerFactory', 'remarkFactory', function ($scope, $state, $stateParams, dataFactory, consultationFactory, customerFactory, remarkFactory) {
+    .controller('paymentObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'consultationFactory', 'customerFactory', 'remainderFactory', function ($scope, $state, $stateParams, dataFactory, consultationFactory, customerFactory, remainderFactory) {
         $scope.data = {}
         $scope.options = {}
         $scope.handlers = {
@@ -14,15 +14,28 @@ angular
 
         function back() {
             $state.go('dashboard.consultations')
-            consultationFactory
+
         }
         function save() {
-            // console.log(consultationFactory.paymentPostData($scope.data)); // ToDo We need to pass two object options and installments
             let paymentPostData = consultationFactory.paymentPostData($scope.data);
+            let paymentRemainderData = {
+                customerId: $scope.data.customerId,
+                date: $scope.data.installments[0].date,
+                status: $scope.data.payment.status,
+                type: "Payment"
+            }
+
+            remainderFactory.createRemainderPayment(paymentRemainderData)
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+
+
             consultationFactory.update(paymentPostData)
                 .then((result) => {
-                    console.log(result)
-                    $state.go('dashboard.consultations')
                 })
                 .catch((err) => {
                     console.log(err);
@@ -45,8 +58,7 @@ angular
                     $scope.options.customerData = response.data.data.customerResult;
                     $scope.options.consultationData = response.data.data.consultResult;
                     if (response.data.data.consultResult) {
-                        $scope.data.installment = {};
-                        $scope.data.installment.amount = $scope.data.payment.total;
+
                         $scope.options["addBtn"] = false;
                     }
                     $scope.data.consultationId = response.data.data.consultResult._id;
@@ -60,8 +72,10 @@ angular
                         },
                         $scope.data.installments = response.data.data.consultResult.installments,
                         $scope.data.medicalsummary = response.data.data.consultResult.medicalsummary,
-
-                        $scope.options.noteList = response.data.data.remarkResult;
+                        $scope.data.installment = {};
+                    $scope.data.installment.amount = $scope.data.payment.total;
+                    console.log($scope.data);
+                    $scope.options.noteList = response.data.data.remarkResult;
                 }, function (error) {
                     console.log(error);
                 })
