@@ -1,15 +1,24 @@
 angular
     .module('crmApp')
-    .controller('loginCtrl', ['$scope','$state','dataFactory', function($scope, $state, dataFactory){
+    .controller('loginCtrl', ['$scope', '$state', 'dataFactory', 'loginFactory', function ($scope, $state, dataFactory, loginFactory) {
         $scope.data = {}
         $scope.handlers = {
-            login:login
+            login: login
         }
 
-        function login(){
-            //enter log data
-            if(!dataFactory.validatePage('login', $scope.data))  return;
-            localStorage.setItem('token', "")
-            $state.go('dashboard'); 
+        function login() {
+            if (!dataFactory.validatePage('login', $scope.data)) return;
+            //getting user details and token if user exist  
+            loginFactory.getUserDetails($scope.data)
+                .then((response) => {
+                    localStorage.setItem('token', response.data.data.token);
+                    localStorage.setItem('userData', JSON.stringify(response.data.data));
+                    $state.go('dashboard');
+                }, function (error) {
+                    console.log(error);
+                })
+
+
+
         }
     }]);

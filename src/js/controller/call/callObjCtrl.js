@@ -57,7 +57,7 @@ angular
              callFactory.create($scope.data)
                 .then((result) => { 
                     console.log(result);
-                    $state.go('dashboard.calls')
+                      $state.go('dashboard.calls')
                     })
                 .catch((err) => {
                     console.log(err);

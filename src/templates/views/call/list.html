@@ -10,8 +10,9 @@
                         <th scope="col">Name</th>
                         <th scope="col">Mobile</th>
                         <th scope="col">FollowUp Date</th>
-                        <th scope="col">Gender</th>
+                        <!-- <th scope="col">Gender</th> -->
                         <th scope="col">Created By</th>
+                        <th scope="col">Action</th>
                       
                         </tr>
                 </thead>
@@ -21,13 +22,14 @@
                         <td> {{$index + 1}} &nbsp;&nbsp; {{call.customerInfo.name}}  </td>
                          <td> {{call.mobile[0]}} </td>
                         <td>{{call.followupDate}}</td>
-                        <td>{{call.customerInfo.gender}}</td>
-                        <td>{{call.createdBy.name}}
-                                <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip"
-                                data-placement="top" title="Start Registration" ng-click="handlers.customerRegistration(call)">
-                                <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
-                            </button>
-                        </td>
+                        <!-- <td>{{call.customerInfo.gender}}</td> -->
+                        <td>{{call.createdBy.name}}  </td>
+                               
+                      
+                        <td> <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip"
+                            data-placement="top" title="Start Registration" ng-click="handlers.customerRegistration(call)">
+                            <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
+                        </button></td>
                        
                        
                     </tr>

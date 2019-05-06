@@ -8,6 +8,7 @@ angular
             })
         }
 
+        $scope.options = {}
         // adjustSideBar();
 
         $scope.customer = function(){
@@ -31,4 +32,7 @@ angular
         $scope.toggle = function(){
             ($scope.menuActive) ? $scope.menuActive = false : $scope.menuActive = true;
         }
+        let user = JSON.parse(localStorage.getItem("userData"));
+        $scope.options.user_label = user.user_label;
+       
     }]);

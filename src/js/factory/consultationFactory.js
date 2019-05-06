@@ -2,13 +2,18 @@ angular.module('crmApp')
     .factory('consultationFactory', function ($http) {
         var baseUrl = "http://localhost:3003/";
 
-
+         
+        function setHeaders(){
+            const headers = { 'accept-version': "1.0.0",
+            'Authorization': localStorage.getItem('token') }
+            return headers;
+          }
 
         /**
          * method to get all consultation from consultation API
          */
         function getConsultations() {
-            return $http.get(baseUrl + "consultations");
+            return $http.get(baseUrl + "consultations",{headers:setHeaders()});
         }
 
         /**
@@ -16,11 +21,11 @@ angular.module('crmApp')
          */
         function getConsultation(customerid) {
             //return $http.get(baseUrl + "consultations?customerId=" + customerid);
-            return $http.get(baseUrl + "consultation/" + customerid);
+            return $http.get(baseUrl + "consultation/" + customerid,{headers:setHeaders()});
         }
 
         function getConsultationById(id) {
-            return $http.get(baseUrl + "consultationbyconsultid/" + id);
+            return $http.get(baseUrl + "consultationbyconsultid/" + id,{headers:setHeaders()});
         }
 
         /**
@@ -36,7 +41,7 @@ angular.module('crmApp')
             if (label == 'mobile') params["mobile"] = value;
 
 
-            return $http.get(baseUrl + "customers", { params });
+            return $http.get(baseUrl + "customers", { params },{headers:setHeaders()});
             // return $http.get(baseUrl+"customers",{params: {mobile:value} });
 
         }
@@ -46,15 +51,16 @@ angular.module('crmApp')
          * method to update consultation into the DB.
          */
         function create(data) {
-
-            return $http.post(baseUrl + "consultation", data)
+            let user = JSON.parse(localStorage.getItem("userData"));
+            data.createdBy = {id:user.user_id,name: user.user_label};
+            return $http.post(baseUrl + "consultation", data,{headers:setHeaders()})
         }
 
         /**
          * method to update consultation into the DB.
          */
         function update(data) {
-              return $http.put(baseUrl + "consultation/" + data.consultationId, data)
+              return $http.put(baseUrl + "consultation/" + data.consultationId, data,{headers:setHeaders()})
         }
 
         function checkPaymentStatus(consultObj, installment) {

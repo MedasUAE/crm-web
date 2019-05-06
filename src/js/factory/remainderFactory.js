@@ -2,11 +2,18 @@ angular.module('crmApp')
     .factory('remainderFactory', function ($http) {
         var baseUrl = "http://localhost:3003/";
 
+        function setHeaders(){
+            const headers = { 'accept-version': "1.0.0",
+            'Authorization': localStorage.getItem('token') }
+            return headers;
+          }
+      
+
         /**
          * method to save remainder into the DB.
          */
         function createRemainderFileOpen(remainderData) {
-            return $http.post(baseUrl + "remainderfileopen", remainderData)
+            return $http.post(baseUrl + "remainderfileopen", remainderData, {headers:setHeaders()})
         }
 
         
@@ -14,13 +21,13 @@ angular.module('crmApp')
          * method to save remainder into the DB.
          */
         function createRemainderPayment(remainderData) {
-            return $http.post(baseUrl + "remainderpayment", remainderData)
+            return $http.post(baseUrl + "remainderpayment", remainderData,{headers:setHeaders()})
         }
         /**
          * method to update remainder into the DB.
          */
         function updateRemainder(data) {
-            return $http.put(baseUrl + "remainder/" + data.id, data)
+            return $http.put(baseUrl + "remainder/" + data.id, data,{headers:setHeaders()})
         }
 
         // function getRemainder(id) {
@@ -29,7 +36,7 @@ angular.module('crmApp')
         // }
 
         function getRemainders(customerId) {
-           if(customerId)   return $http.get(baseUrl + "remainders?customerId=" + customerId);
+           if(customerId)   return $http.get(baseUrl + "remainders?customerId=" + customerId,{headers:setHeaders()});
             
         }
 
@@ -37,12 +44,10 @@ angular.module('crmApp')
          * method to filter out  Remainders from Remainders API
          */
         function filter(customerId,label,value) {
-            if(label == 'status' && customerId)  return $http.get(baseUrl + "remainders?customerId=" + customerId + "&status=" + value);
+            if(label == 'status' && customerId)  return $http.get(baseUrl + "remainders?customerId=" + customerId + "&status=" + value, {headers:setHeaders()});
            
-            if(label == 'date' && customerId)  return $http.get(baseUrl + "remainders?customerId=" + customerId + "&date=" + value);
-                
-         
-                  
+            if(label == 'date' && customerId)  return $http.get(baseUrl + "remainders?customerId=" + customerId + "&date=" + value ,{headers:setHeaders()});
+                      
           }
 
 

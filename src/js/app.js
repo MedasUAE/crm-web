@@ -8,7 +8,10 @@ angular.module('crmApp', [
             $stateProvider
                 .state('dashboard', {
                     url: '/dashboard',
-                    templateUrl: './views/dashboard.html'
+                    templateUrl: './views/dashboard.html',
+                    onEnter: ['$state', function ($state) {
+                        if (!validateToken()) $state.go('login');
+                    }]
                 })
                 .state('login', {
                     url: '/login',
