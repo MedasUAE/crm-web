@@ -135,6 +135,7 @@ angular
              return hairTypes;
         }
 
+
         return {
             validatePage: validate,
             dateFormat: dateFormat,

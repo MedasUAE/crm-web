@@ -74,7 +74,8 @@ angular.module('crmApp', [
                     templateUrl: './views/remainder/object.html'
                 })
                 .state('dashboard.remainders', {
-                    url: '/remainders',
+                    url: '/remainders/:id',
+                   // params: { obj: null },
                     templateUrl: './views/remainder/list.html'
                 })
                 .state('otherwise', {

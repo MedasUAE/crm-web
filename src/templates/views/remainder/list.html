@@ -1,8 +1,10 @@
 <div ng-controller="remainderListCtrl">
     <div class="row">
         <div class="col-md-12 my-3 p-0">
-            <header label="'Remainder'" button-label="'New'" icon="'people'" state="'dashboard.remainder'"></header>
-            
+            <!-- <header label="'Remainder'" button-label="'New'" icon="'people'" state="'dashboard.remainder'"></header> -->
+            <header label="'Remainders'"></header>
+            </header>
+
             <table class="table table-sm table-light table-striped p-0 header-fixed">
                 <thead class="table-primary">
                     <tr>
@@ -10,27 +12,52 @@
                         <th scope="col">Remainder Date</th>
                         <th scope="col">Type</th>
                         <th scope="col">Message</th>
-                        <th scope="col">Customer Name</th>
+                        <!-- <th scope="col">Customer Name</th> -->
+                        <th scope="col">Status</th>
                         <th scope="col">Created By</th>
-                      
-                        </tr>
+
+                    </tr>
                 </thead>
                 <tbody>
-                    <!-- <tr ng-repeat="call in options.callList" ng-class="{'table-success': call.status == 'Open'}" class="px-1 ">
-                           
-                        <td> {{$index + 1}} &nbsp;&nbsp; {{call.customerInfo.name}}  </td>
-                         <td> {{call.mobile[0]}} </td>
-                        <td>{{call.followupDate}}</td>
-                        <td>{{call.customerInfo.gender}}</td>
-                        <td>{{call.createdBy.name}}
-                                <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip"
-                                data-placement="top" title="Start Registration" ng-click="handlers.customerRegistration(call)">
+
+                    <div class="col-12 px-25">
+                        <div class="row py-1">
+                             <!-- status -->
+                        <div class="form-group row">
+                                <label for="status" class="col-sm-4 col-form-label col-form-label-sm">status</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control form-control-sm" data-live-search="true"  data-ng-change="handlers.filter('status',status)" data-ng-model="status">
+                                        <option value="">--Select option--</option>
+                                        <option ng-selected="data.status == status" ng-repeat="status in options.statuss" value="{{status}}">{{status}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- remainderDate Date -->
+                            <div class="form-group row">
+                                <label for="remainderDate" class="col-sm-3 col-form-label col-form-label-sm">Date </label>
+                                <div class="col-sm-9">
+                                    <input date-input type="date"  data-ng-change="handlers.filter('date',date)" data-ng-model="date" class="form-control form-control-sm" id="remainderDate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <tr ng-repeat="remainder in options.remainderList" ng-class="{'table-success': remainder.status == 'Open'}" class="px-1 ">
+
+                        <td> {{$index + 1}} &nbsp;&nbsp; {{remainder.date}} </td>
+                        <td> {{remainder.type}} </td>
+                        <td>{{remainder.message}}</td>
+                        <td>{{remainder.status}}</td>
+                        <td>{{remainder.createdBy.name}}
+                            <!-- <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip"
+                                data-placement="top" title="Start Registration" ng-click="handlers.customerRegistration(remainder)">
                                 <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
-                            </button>
+                            </button> -->
                         </td>
-                       
-                       
-                    </tr> -->
+
+
+                    </tr>
                 </tbody>
             </table>
         </div>

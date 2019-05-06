@@ -14,7 +14,6 @@ angular.module('crmApp')
          * method to save call into the DB.
          */
         function create(data) {
-            console.log(data)
             return $http.post(baseUrl+"call",data)
         }
 

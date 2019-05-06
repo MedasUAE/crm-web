@@ -30,7 +30,7 @@ angular
 
         function edit() {
             $scope.data["consultationId"] = $stateParams.id;
-            consultationFactory.update($scope.data)
+              consultationFactory.update($scope.data)
                 .then((result) => {
                         $state.go('dashboard.consultations')
                       })
@@ -42,16 +42,18 @@ angular
 
         function init() {
             $scope.options["addBtn"] = false;
-
-            console.log($stateParams.id);
-            // get  consultation by consult Id
+       // get  consultation by consultation Id
             consultationFactory.getConsultationById($stateParams.id)
                 .then((response) => {
                       if (response.data.data) {
+                        $scope.options["addBtn"] = false;
+                        $scope.data["customerId"] =  response.data.data.consultResult.customerId._id;
                          $scope.options.consultationData = response.data.data.consultResult;
                           $scope.options.customerData = response.data.data.consultResult.customerId;
-                         $scope.options.noteList = response.data.data.remarkResult;
-                         $scope.options["addBtn"] = false;
+                          $scope.options.customerData.createdDate = response.data.data.createdDate;
+                          $scope.options.customerData.createdTime = response.data.data.createdTime;
+                          $scope.options.noteList = response.data.data.remarkResult;
+                       
                      }
                 }, function (error) {
                     console.log(error);

@@ -56,6 +56,7 @@ angular
         function save() {
              callFactory.create($scope.data)
                 .then((result) => { 
+                    console.log(result);
                     $state.go('dashboard.calls')
                     })
                 .catch((err) => {

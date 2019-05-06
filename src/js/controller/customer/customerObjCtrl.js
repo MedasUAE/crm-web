@@ -38,8 +38,11 @@ angular
            customerFactory.create($scope.data)
                 .then((result) => {
                     if ($scope.options.reqFrom == 'callList') {
-                          remarkFactory.updateRemark({ "id": $scope.options.callId, "customerId": result.data.data._id})
+                        console.log("*********call id"+$scope.options.callId);
+                        console.log( result.data.data.customerResult._id);
+                          remarkFactory.updateRemark({ "id": $scope.options.callId, "customerId": result.data.data.customerResult._id})
                             .then((result) => {
+                               // console.log(result);
                               }).catch((err) => {
                               })
                     }

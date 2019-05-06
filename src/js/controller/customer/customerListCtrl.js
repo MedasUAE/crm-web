@@ -6,7 +6,8 @@ angular
         $scope.handlers = {
             add: add,
         filter:filter,
-        startConsultation:startConsultation
+        startConsultation:startConsultation,
+        viewRemainders:viewRemainders
        
         }
         init();
@@ -29,6 +30,13 @@ angular
              $state.go('dashboard.consultation',{id: data._id,obj:data})
            
         }
+
+        function viewRemainders(data) { 
+            $state.go('dashboard.remainders',{id: data._id,obj:data})
+          
+       }
+
+        
 
        function filter(label,value) {
              customerFactory.filter(label,value)

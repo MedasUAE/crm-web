@@ -54,7 +54,7 @@ angular.module('crmApp')
          * method to update consultation into the DB.
          */
         function update(data) {
-            return $http.put(baseUrl + "consultation/" + data.consultationId, data)
+              return $http.put(baseUrl + "consultation/" + data.consultationId, data)
         }
 
         function checkPaymentStatus(consultObj, installment) {
@@ -78,8 +78,6 @@ angular.module('crmApp')
 
         function paymentPostData(consultObj) {
             if(consultObj.installments.length == 0) consultObj = sampleDetails(consultObj);
-            console.log(consultObj);
-          
             // creating installament obj
             let installmentObj = {
                 amount: consultObj.installment.amount,
@@ -106,9 +104,14 @@ angular.module('crmApp')
                 medicalsummary: consultObj.medicalsummary,
                 installments: consultObj.installments,
                 payment,
-                consultationId: consultObj.consultationId
+                consultationId: consultObj.consultationId,
+                remark:consultObj.remark,
+                customerId:consultObj.customerId
+
             }
         }
+
+        
         function sampleDetails(consultObj){
              // creating medical summary obj
             let medicalsummaryObj = {
@@ -122,6 +125,15 @@ angular.module('crmApp')
             return consultObj;
         }
 
+        function paidAmount(consultObj){
+              paidAmount = 0;
+            consultObj.installments.forEach(ins => {
+                paidAmount = parseInt(paidAmount) + parseInt(ins.amount); 
+            });
+          
+            return paidAmount;
+        }
+
 
         return {
             create: create,
@@ -131,6 +143,7 @@ angular.module('crmApp')
             getConsultationById: getConsultationById,
             update: update,
             paymentPostData: paymentPostData,
-            sampleDetails:sampleDetails
+            sampleDetails:sampleDetails,
+            paidAmount:paidAmount
         }
     });

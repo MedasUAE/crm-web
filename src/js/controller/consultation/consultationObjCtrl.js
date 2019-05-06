@@ -48,8 +48,10 @@ angular
             // get customer, remark, consultation(if consultation done)  details
             customerFactory.getCustomer($stateParams.id)
                 .then((response) => {
-                   // console.log(response);
+                    console.log(response);
                     $scope.options.customerData = response.data.data.customerResult;
+                    $scope.options.customerData.createdDate =  response.data.data.createdDate;
+                    $scope.options.customerData.createdTime =  response.data.data.createdTime;
                     $scope.options.noteList = response.data.data.remarkResult;
                      // if consultation already done then edit mode
                     if(response.data.data.consultResult) {

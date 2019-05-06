@@ -27,16 +27,14 @@ angular
 
             remainderFactory.createRemainderPayment(paymentRemainderData)
                 .then((result) => {
-                    console.log(result);
-                })
+                  })
                 .catch((err) => {
                     console.log(err);
                 })
 
-
             consultationFactory.update(paymentPostData)
                 .then((result) => {
-                })
+                 })
                 .catch((err) => {
                     console.log(err);
                 })
@@ -54,8 +52,9 @@ angular
             // get customer, consultation, remarks  details
             customerFactory.getCustomer($stateParams.id)
                 .then((response) => {
-
                     $scope.options.customerData = response.data.data.customerResult;
+                    $scope.options.customerData.createdDate = response.data.data.createdDate;
+                    $scope.options.customerData.createdTime = response.data.data.createdTime;
                     $scope.options.consultationData = response.data.data.consultResult;
                     if (response.data.data.consultResult) {
 
@@ -63,19 +62,23 @@ angular
                     }
                     $scope.data.consultationId = response.data.data.consultResult._id;
 
-                    $scope.data.rhinoplasty = response.data.data.consultResult.rhinoplasty,
-                        $scope.data.remark = response.data.data.consultResult.remark,
+                    $scope.data.rhinoplasty = response.data.data.consultResult.rhinoplasty;
+                        $scope.data.remark = response.data.data.consultResult.remark;
                         $scope.data.payment = {
                             total: response.data.data.consultResult.payment.total,
                             status: response.data.data.consultResult.payment.status,
                             emis: response.data.data.consultResult.payment.emis
                         },
-                        $scope.data.installments = response.data.data.consultResult.installments,
-                        $scope.data.medicalsummary = response.data.data.consultResult.medicalsummary,
+                        $scope.data.installments = response.data.data.consultResult.installments;
+                        $scope.data.medicalsummary = response.data.data.consultResult.medicalsummary;
+                     
+                        let paidAmount = consultationFactory.paidAmount($scope.data);
                         $scope.data.installment = {};
-                    $scope.data.installment.amount = $scope.data.payment.total;
-                    console.log($scope.data);
-                    $scope.options.noteList = response.data.data.remarkResult;
+          
+                        $scope.data.installment.amount = parseInt($scope.data.payment.total) - paidAmount;
+                        if($scope.data.installment.amount < 0 ) alert("Amount can't be greater than Total Cost ");
+
+                     $scope.options.noteList = response.data.data.remarkResult;
                 }, function (error) {
                     console.log(error);
                 })

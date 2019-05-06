@@ -26,7 +26,7 @@ angular.module('crmApp')
                         </div>
                         <div class="col-9 p-0">
                             <p class="card-text">
-                                <small>{{data.createdAt}}</small>
+                                <small>{{data.createdDate}}</small>
                             </p>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ angular.module('crmApp')
                     </div>
                     <div class="col-9 p-0">
                         <p class="card-text">
-                            <small>{{data.createdAt}}</small>
+                            <small>{{data.createdTime}}</small>
                         </p>
                     </div>
                 </div>
