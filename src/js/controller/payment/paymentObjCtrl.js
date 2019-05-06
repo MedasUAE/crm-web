@@ -1,13 +1,10 @@
 angular
     .module('crmApp')
-    .controller('paymentObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'consultationFactory', 'customerFactory', 'remarkFactory', function ($scope, $state, $stateParams, dataFactory, consultationFactory, customerFactory, remarkFactory) {
+    .controller('paymentObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'consultationFactory', 'customerFactory', 'remainderFactory', function ($scope, $state, $stateParams, dataFactory, consultationFactory, customerFactory, remainderFactory) {
         $scope.data = {}
-        $scope.remarkData = {}
         $scope.options = {}
-        $scope.options.customerId = {}
         $scope.handlers = {
             save: save,
-            edit: edit,
             activeClick: activeClick,
             back: back
 
@@ -17,93 +14,71 @@ angular
 
         function back() {
             $state.go('dashboard.consultations')
-            consultationFactory
+
         }
         function save() {
-            console.log(consultationFactory.paymentPostData($scope.data)); // ToDo We need to pass two object options and installments
-            // consultationFactory.update(consultationFactory.paymentPostData($scope.data))
-            //     .then((result) => {
-            //         console.log(result)
-            //         $state.go('dashboard.consultations')
-            //     })
-            //     .catch((err) => {
-            //         console.log(err);
-            //     })
-        }
+            let paymentPostData = consultationFactory.paymentPostData($scope.data);
+            let paymentRemainderData = {
+                customerId: $scope.data.customerId,
+                date: $scope.data.installments[0].date,
+                status: $scope.data.payment.status,
+                type: "Payment"
+            }
 
-        
-
-        function edit() {
-            //ToDo Remove this
-            $scope.data["consultationId"] = $scope.data._id;
-            consultationFactory.update($scope.data)
+            remainderFactory.createRemainderPayment(paymentRemainderData)
                 .then((result) => {
-                    $scope.remarkData.documentId = result.data.data._id;
-                    // console.log(result)
-                    $scope.remarkData.remark = $scope.data.remark;
-                    $scope.remarkData.collectionName = "Consultation";
-                    $scope.remarkData.createdBy = "101";
-                    $scope.remarkData.customerId = $stateParams.id;
-
-                    remarkFactory.createRemark($scope.remarkData)
-                        .then((result) => {
-                            console.log("saved Remark:" + result)
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                        })
-
-                    // console.log(result)
-                    $state.go('dashboard.consultations')
-                    // console.log($scope.data);
-                    // console.log("saved");
+                  })
+                .catch((err) => {
+                    console.log(err);
                 })
+
+            consultationFactory.update(paymentPostData)
+                .then((result) => {
+                 })
                 .catch((err) => {
                     console.log(err);
                 })
         }
 
-
         function init() {
             // ToDo Show existing Installments
+            //ToDo Show pending amount in Amount
+            // Todo Amount should not exceed total amount
             $scope.data["customerId"] = $stateParams.id;
             $scope.options["addBtn"] = true;
             $scope.options.customerData = $stateParams['obj'];
-            $scope.options.customerId = $stateParams.id; // Why ToDo
             $scope.options.paymentTypes = dataFactory.getPaymentTypes();
 
-
-            // get customer details
+            // get customer, consultation, remarks  details
             customerFactory.getCustomer($stateParams.id)
                 .then((response) => {
+                    $scope.options.customerData = response.data.data.customerResult;
+                    $scope.options.customerData.createdDate = response.data.data.createdDate;
+                    $scope.options.customerData.createdTime = response.data.data.createdTime;
+                    $scope.options.consultationData = response.data.data.consultResult;
+                    if (response.data.data.consultResult) {
 
-                    $scope.options.customerData = response.data.data;
-
-                }, function (error) {
-                    console.log(error);
-                })
-            // get curomet consultation
-            consultationFactory.getConsultation($stateParams.id)
-                .then((response) => {
-                    if (response.data.data.length) {
-
-                        $scope.options.consultationData = response.data.data[0]; //change all non editable object to options :ToDo
-                        $scope.data = response.data.data[0];
-                        $scope.data.remark = ''; //No Remarks saving :ToDo
-                        $scope.data.installment = {};
-                        $scope.data.installment.amount =  $scope.data.payment.total;
-                        console.log( $scope.data);
                         $scope.options["addBtn"] = false;
-                        // if($scope.data.payment.emis == 1) 
                     }
-                }, function (error) {
-                    console.log(error);
-                })
-            // get customer remarks :ToDo Move Remarks to Backend
-            remarkFactory.getAllRemarks($stateParams.id)
-                .then((response) => {
-                    $scope.options.noteList = response.data.data;
-                    // console.log($scope.options.noteList);
+                    $scope.data.consultationId = response.data.data.consultResult._id;
+
+                    $scope.data.rhinoplasty = response.data.data.consultResult.rhinoplasty;
+                        $scope.data.remark = response.data.data.consultResult.remark;
+                        $scope.data.payment = {
+                            total: response.data.data.consultResult.payment.total,
+                            status: response.data.data.consultResult.payment.status,
+                            emis: response.data.data.consultResult.payment.emis
+                        },
+                        $scope.data.installments = response.data.data.consultResult.installments;
+                        $scope.data.medicalsummary = response.data.data.consultResult.medicalsummary;
+                     
+                        let paidAmount = consultationFactory.paidAmount($scope.data);
+                        $scope.data.installment = {};
+          
+                        $scope.data.installment.amount = parseInt($scope.data.payment.total) - paidAmount;
+                        if($scope.data.installment.amount < 0 ) alert("Amount can't be greater than Total Cost ");
+
+                     $scope.options.noteList = response.data.data.remarkResult;
                 }, function (error) {
                     console.log(error);
                 })

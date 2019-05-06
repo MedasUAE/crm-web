@@ -35,9 +35,9 @@ angular.module('crmApp', [
                     params: { obj: null },
                     templateUrl: './views/consultation/object.html'
                 })
-                .state('dashboard.viewconsultation', {
-                    url: '/viewconsultation/:id',
-                    templateUrl: './views/consultation/view.html'
+                .state('dashboard.secondconsultation', {
+                    url: '/secondconsultation/:id',
+                    templateUrl: './views/consultation/secondObject.html'
                 })
                 .state('dashboard.appointment', {
                     url: '/appointment',
@@ -67,6 +67,16 @@ angular.module('crmApp', [
                 .state('dashboard.payments', {
                     url: '/payments',
                     templateUrl: './views/payment/list.html'
+                })
+                .state('dashboard.remainder', {
+                    url: '/remainder/:id',
+                    params: { obj: null },
+                    templateUrl: './views/remainder/object.html'
+                })
+                .state('dashboard.remainders', {
+                    url: '/remainders/:id',
+                   // params: { obj: null },
+                    templateUrl: './views/remainder/list.html'
                 })
                 .state('otherwise', {
                     url: '*path',

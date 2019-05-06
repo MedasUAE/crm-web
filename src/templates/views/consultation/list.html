@@ -40,13 +40,17 @@
                         <td>{{consultation.customerId.demography.nationality}}</td>
 
                         <td>
-                            <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip" data-placement="top" title="View Consultation"
-                                ng-click="handlers.view(consultation._id)">
+                            <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip" data-placement="top" title=" Start Second Consultation"
+                                ng-click="handlers.secondConsultation(consultation._id)">
                                 <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
                             </button>
 
                             <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip" data-placement="top" title="Start Payment"
                                 ng-click="handlers.startPayment(consultation)">
+                                <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
+                            </button>
+                            <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip" data-placement="top" title="File Open Remainder"
+                                ng-click="handlers.fileOpenRemainder(consultation)">
                                 <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
                             </button>
 

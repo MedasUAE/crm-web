@@ -15,11 +15,12 @@ angular.module('crmApp')
          * method to get  consultation by customer Id from consultation API
          */
         function getConsultation(customerid) {
-            return $http.get(baseUrl + "consultations?customerId=" + customerid);
+            //return $http.get(baseUrl + "consultations?customerId=" + customerid);
+            return $http.get(baseUrl + "consultation/" + customerid);
         }
 
         function getConsultationById(id) {
-            return $http.get(baseUrl + "consultation/" + id);
+            return $http.get(baseUrl + "consultationbyconsultid/" + id);
         }
 
         /**
@@ -53,19 +54,22 @@ angular.module('crmApp')
          * method to update consultation into the DB.
          */
         function update(data) {
-            return $http.put(baseUrl + "consultation/" + data.consultationId, data)
+              return $http.put(baseUrl + "consultation/" + data.consultationId, data)
         }
 
         function checkPaymentStatus(consultObj, installment) {
             let status = "Open";
             // total payment is equal to installment amount when emi is 1
             (consultObj.payment.emis == 1 && consultObj.payment.total == installment.amount) ? status = "Close" : status = "Open";
+          // status =  (consultObj.payment.emis == 1 && consultObj.payment.total == installment.amount) ? "Close" : "Open";
+          
             // let totalInstallmentAmount = parseInt(installment.amount);
             let totalInstallmentAmount = parseInt(installment.amount);
             // when emi is greater then 1 and multiple installments
             if (typeof (consultObj.installments) == "object") {
-                consultObj.installments.forEach(ins => {
-                    totalInstallmentAmount = totalInstallmentAmount + parseInt(ins.amount);
+                 consultObj.installments.forEach(ins => {
+                 totalInstallmentAmount = totalInstallmentAmount + parseInt(ins.amount);
+              
                 });
                 (totalInstallmentAmount == consultObj.payment.total) ? status = "Close" : status = "Open";
             }
@@ -73,16 +77,7 @@ angular.module('crmApp')
         }
 
         function paymentPostData(consultObj) {
-            // let totalInstallmentAmount = 0;
-            // creating medical summary obj
-            let medicalsummaryObj = {
-                label: 'bloodSample',
-                value: true,
-                date: consultObj.medicalsummary.date
-            };
-            // blood sample array in medical summarry
-            consultObj.medicalsummary.push(medicalsummaryObj);
-
+            if(consultObj.installments.length == 0) consultObj = sampleDetails(consultObj);
             // creating installament obj
             let installmentObj = {
                 amount: consultObj.installment.amount,
@@ -100,15 +95,43 @@ angular.module('crmApp')
             // adding installment in array
             consultObj.installments.push(installmentObj)
             //decrease the emi if payment is done before
-            if (payment.emis > consultObj.installments.length && payment.status == "Close") payment.emis = consultObj.installments.length;
-            else if (payment.emis <= consultObj.installments.length && payment.status != "Close") payment.emis = consultObj.installments.length + 1;
-
+           
+            if (payment.emis > consultObj.installments.length && payment.status == "Close")  payment.emis = consultObj.installments.length;
+             
+            else if (payment.emis <= consultObj.installments.length && payment.status != "Close")  payment.emis = consultObj.installments.length + 1;
+         
             return {
                 medicalsummary: consultObj.medicalsummary,
                 installments: consultObj.installments,
                 payment,
-                consultationId: consultObj._id
+                consultationId: consultObj.consultationId,
+                remark:consultObj.remark,
+                customerId:consultObj.customerId
+
             }
+        }
+
+        
+        function sampleDetails(consultObj){
+             // creating medical summary obj
+            let medicalsummaryObj = {
+                label: 'bloodSample',
+                value: true,
+                date: consultObj.medicalsummary.date
+            };
+            
+            // blood sample array in medical summarry
+            consultObj.medicalsummary.push(medicalsummaryObj);
+            return consultObj;
+        }
+
+        function paidAmount(consultObj){
+              paidAmount = 0;
+            consultObj.installments.forEach(ins => {
+                paidAmount = parseInt(paidAmount) + parseInt(ins.amount); 
+            });
+          
+            return paidAmount;
         }
 
 
@@ -119,6 +142,8 @@ angular.module('crmApp')
             getConsultation: getConsultation,
             getConsultationById: getConsultationById,
             update: update,
-            paymentPostData: paymentPostData
+            paymentPostData: paymentPostData,
+            sampleDetails:sampleDetails,
+            paidAmount:paidAmount
         }
     });

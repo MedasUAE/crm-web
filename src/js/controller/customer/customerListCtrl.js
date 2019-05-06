@@ -1,13 +1,13 @@
 angular
     .module('crmApp')
-    .controller('customerListCtrl', ['$scope', 'dataFactory','customerFactory', '$state', function ($scope, dataFactory,customerFactory,$state) {
+    .controller('customerListCtrl', ['$scope','customerFactory', '$state', function ($scope,customerFactory,$state) {
         $scope.data = {}
         $scope.options = {}
-        $scope.options.params = {}
         $scope.handlers = {
             add: add,
         filter:filter,
-        startConsultation:startConsultation
+        startConsultation:startConsultation,
+        viewRemainders:viewRemainders
        
         }
         init();
@@ -16,8 +16,7 @@ angular
               customerFactory.getCustomers()
             .then((response)=>{
                 $scope.options.customerList = response.data.data;
-                  console.log(response.data.data);
-            },function(error){
+                 },function(error){
                 console.log(error);
             })
         }
@@ -28,17 +27,22 @@ angular
 
        
         function startConsultation(data) { 
-            console.log(data);   
-            $state.go('dashboard.consultation',{id: data._id,obj:data})
+             $state.go('dashboard.consultation',{id: data._id,obj:data})
            
         }
+
+        function viewRemainders(data) { 
+            $state.go('dashboard.remainders',{id: data._id,obj:data})
+          
+       }
+
+        
 
        function filter(label,value) {
              customerFactory.filter(label,value)
             .then((response)=>{
                 $scope.options.customerList = response.data.data;
-                 // console.log(response.data.data);
-            },function(error){
+             },function(error){
                 console.log(error);
             })
         };
