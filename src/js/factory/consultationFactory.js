@@ -1,6 +1,6 @@
 angular.module('crmApp')
     .factory('consultationFactory', function ($http) {
-        var baseUrl = "http://localhost:3000/";
+        var baseUrl = "http://localhost:3003/";
 
 
 

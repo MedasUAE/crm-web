@@ -8,10 +8,7 @@ angular.module('crmApp', [
             $stateProvider
                 .state('dashboard', {
                     url: '/dashboard',
-                    templateUrl: './views/dashboard.html',
-                    onEnter: ['$state', function ($state) {
-                        if (!validateToken()) $state.go('login');
-                    }]
+                    templateUrl: './views/dashboard.html'
                 })
                 .state('login', {
                     url: '/login',
@@ -20,7 +17,7 @@ angular.module('crmApp', [
                 .state('dashboard.customer', {
                     url: '/customer',
                     params: { obj: null },
-                    templateUrl: './views/customer/object.html'
+                    templateUrl: './views/customer/object.html',
                 })
                 .state('dashboard.customers', {
                     url: '/customers',
@@ -80,7 +77,10 @@ angular.module('crmApp', [
                 })
                 .state('otherwise', {
                     url: '*path',
-                    templateUrl: './views/dashboard.html'
+                    templateUrl: './views/dashboard.html',
+                    onEnter: ['$state', function ($state) {
+                        if (!validateToken()) $state.go('login');
+                    }]
                 })
         }
     ])

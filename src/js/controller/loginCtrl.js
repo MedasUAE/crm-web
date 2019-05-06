@@ -7,8 +7,9 @@ angular
         }
 
         function login(){
+            //enter log data
             if(!dataFactory.validatePage('login', $scope.data))  return;
-            localStorage.setItem('token', "123")
+            localStorage.setItem('token', "")
             $state.go('dashboard'); 
         }
     }]);
