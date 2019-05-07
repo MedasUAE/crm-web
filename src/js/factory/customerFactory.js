@@ -46,7 +46,8 @@ angular.module('crmApp')
         function create(data) {
             let user = JSON.parse(localStorage.getItem("userData"));
             data.createdBy = {id:user.user_id,name: user.user_label};
-               return $http.post(baseUrl+"customer",data,{headers:setHeaders()})
+            data.coordinator = {id:user.user_id,name: user.user_label};
+                 return $http.post(baseUrl+"customer",data,{headers:setHeaders()})
         }
 
 
