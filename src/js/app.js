@@ -26,6 +26,15 @@ angular.module('crmApp', [
                     url: '/customers',
                     templateUrl: './views/customer/list.html'
                 })
+                .state('dashboard.lead', {
+                    url: '/lead',
+                    params: { obj: null },
+                    templateUrl: './views/lead/object.html',
+                })
+                .state('dashboard.leads', {
+                    url: '/leads',
+                    templateUrl: './views/lead/list.html'
+                })
                 .state('dashboard.consultations', {
                     url: '/consultations',
                     templateUrl: './views/consultation/list.html'

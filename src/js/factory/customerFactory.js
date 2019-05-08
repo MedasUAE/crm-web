@@ -17,8 +17,8 @@ angular.module('crmApp')
         /**
          * method to get all customers from customer API
          */
-        function getCustomers() {
-            return $http.get(baseUrl+"customers",{headers:setHeaders()});
+        function getCustomers(openFile) {
+            return $http.get(baseUrl+"customers?openFile=" + openFile, {headers:setHeaders()});
         }
 
         /**
@@ -31,6 +31,7 @@ angular.module('crmApp')
          * method to filter out  customers from customer API
          */
             function filter(label,value) {
+               
           // return $http.get(baseUrl+"customers",{params: {fullName:value} });
           var params = {}
           if(label == 'fullName')   params["fullName"] = value;

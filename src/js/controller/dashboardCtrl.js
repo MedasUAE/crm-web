@@ -24,7 +24,11 @@ angular
         }
 
 
-        $scope.calllist = function(){
+        $scope.lead = function(){
+            $state.go('dashboard.leads')
+        }
+
+        $scope.consultation = function(){
             // $('#exampleModal').modal('show')
             $state.go('dashboard.consultations')
         }

@@ -1,6 +1,6 @@
 angular
     .module('crmApp')
-    .controller('customerListCtrl', ['$scope','customerFactory', '$state', function ($scope,customerFactory,$state) {
+    .controller('leadListCtrl', ['$scope','customerFactory', '$state', function ($scope,customerFactory,$state) {
         $scope.data = {}
         $scope.options = {}
         $scope.handlers = {
@@ -11,16 +11,16 @@ angular
         init();
 
         function init() {
-              customerFactory.getCustomers(true)
+              customerFactory.getCustomers(false)
             .then((response)=>{
-                $scope.options.customerList = response.data.data;
+                $scope.options.leadList = response.data.data;
                  },function(error){
                 console.log(error);
             })
         }
 
         function add() {    
-            $state.go('dashboard.customer')
+            $state.go('dashboard.lead')
         }
 
        
@@ -34,7 +34,7 @@ angular
        function filter(label,value) {
              customerFactory.filter(label,value)
             .then((response)=>{
-                $scope.options.customerList = response.data.data;
+                $scope.options.leadList = response.data.data;
              },function(error){
                 console.log(error);
             })

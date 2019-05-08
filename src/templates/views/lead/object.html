@@ -1,0 +1,125 @@
+<div ng-controller="leadObjCtrl">
+    <div class="row">
+        <div class="col-md-12 my-3 p-0">
+            <!-- header directive -->
+            <header label="'Lead Customer Registration'" icon="'note_add'"></header>
+            <form class="py-3">
+                <div class="row">
+                    <!-- left section -->
+                    <div class="offset-md-1 col-md-6">
+                        <!-- patient name -->
+                        <div class="form-group row">
+                            <label for="patientName" class="col-sm-3 col-form-label col-form-label-sm">Patient
+                                Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="data.demography.fullName" class="form-control form-control-sm" id="patientName"
+                                    placeholder="fullname">
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="form-group row">
+                            <label for="gender" class="col-sm-3 col-form-label col-form-label-sm">Gender</label>
+                            <div class="col-sm-4 btn-group btn-block btn-group-sm" role="group"
+                                aria-label="Basic example">
+                                <button type="button"  class="btn btn-outline-secondary"
+                                    ng-class="{active: data.demography.gender == 'male' }"
+                                    ng-click="handlers.activeClick('male')">Male</button>
+                                <button type="button" class="btn btn-outline-secondary"
+                                    ng-class="{active: data.demography.gender == 'female' }"
+                                    ng-click="handlers.activeClick('female')">Female</button>
+                                    <button type="button" class="btn btn-outline-secondary"
+                                    ng-class="{active: data.demography.gender == 'other' }"
+                                    ng-click="handlers.activeClick('other')">Other</button>
+                                
+                            </div>
+                        </div>
+
+                        <!-- dob and age -->
+                        <div class="form-group row">
+                            <label for="_dob" class="col-sm-3 col-form-label col-form-label-sm">Date Of Birth</label>
+                            <div class="col-sm-4">
+                                <input type="date" ng-model="data.demography.dob" class="form-control form-control-sm" id="_dob">
+                            </div>
+                        </div>
+                         <!-- customer/patient  mobile -->
+                         <div class="form-group row">
+                                <label for="mobile" class="col-sm-3 col-form-label col-form-label-sm">Mobile
+                                </label>
+                                <div class="col-sm-9">
+                                    <input type="text" ng-model="data.contact.mobile" class="form-control form-control-sm" id="mobile" placeholder="customer mobile">
+                                </div>
+                            </div>
+
+                        <!-- email -->
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-3 col-form-label col-form-label-sm">Email</label>
+                            <div class="col-sm-8">
+                                <input type="email" ng-model="data.contact.email" class="form-control form-control-sm" id="email"
+                                    placeholder="xyz@abc.com">
+                            </div>
+                        </div>
+
+                        <!-- residence id -->
+                        <div class="form-group row">
+                            <label for="residenceId" class="col-sm-3 col-form-label col-form-label-sm">Residence
+                                Id</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="data.demography.residenceId" class="form-control form-control-sm" id="residenceId"
+                                    placeholder="xxx-xxxx-xxxxxxx-x">
+                            </div>
+                        </div>
+
+                        <!-- other id -->
+                        <div class="form-group row">
+                            <label for="_otherid" class="col-sm-3 col-form-label col-form-label-sm">Other Id</label>
+                            <div class="col-sm-3 pr-0">
+                                <select class="form-control form-control-sm" data-live-search="true"
+                                    ng-model="data.demography.otherid">
+                                    <option value="">-Select option--</option>
+                                    <option ng-repeat="id in options.otherids" value="{{id}}">{{id}}</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-5">
+                                <input type="text" ng-model="data.demography.otherIdNumber" class="form-control form-control-sm" id="_otherid" placeholder="other id no">
+                            </div>
+                        </div>
+
+                         <!-- nationality -->
+                         <div class="form-group row">
+                            <label for="nationality" class="col-sm-3 col-form-label col-form-label-sm">Nationality</label>
+                               <div class="col-sm-4">
+                                    <select class="form-control form-control-sm" data-live-search="true" ng-model="data.demography.nationality">
+                                            <option value="">--Select option--</option>
+                                            <option ng-selected="data.demography.nationality == nationality" ng-repeat="nationality in options.nationalities" value="{{nationality}}">{{nationality}}</option>
+                                </select>
+                            </div>
+                        </div>
+                   
+                        <!-- remark -->
+                        <div class="form-group row">
+                            <label for="remark" class="col-sm-3 col-form-label col-form-label-sm">Note</label>
+                            <div class="col-sm-8">
+                                <textarea ng-model="data.remark" class="form-control form-control-sm" rows="3" id="remark"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- right section -->
+                    <div class="col-md-4">
+                        <notes list="options.noteList"></notes>
+                        
+                    </div>
+                </div>
+                <!-- buttons -->
+                <div class="row py-2">
+                    <div class="col-md-1 offset-md-1 px-1">
+                        <button type="button" class="btn btn-primary btn-block" ng-click="handlers.save()">SAVE</button>
+                    </div>
+                    <div class="col-md-1 px-1">
+                        <button type="button" class="btn btn-secondary btn-block" ng-click="handlers.back()">CANCEL</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
