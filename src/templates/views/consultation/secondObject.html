@@ -4,7 +4,7 @@
             <!-- header directive -->
             <header label="'Second Consultation'" icon="'note_add'"></header>
             <div class="row pt-3">
-                <dic class="col-9 px-0">
+                <div class="col-9">
                     <div class="row">
                         <div class="col-12">
                             <demography data="options.customerData"></demography>
@@ -63,10 +63,25 @@
                             </form>
                         </div>
                     </div>
-                </dic>
-                <dic class="col-3 pl-0 pr-4">
+                    <div class="row pl-5">
+                        <div class="col-3" ng-if="options.addBtn">
+                            <button type="button" class="btn btn-primary btn-block"
+                                ng-click="handlers.save()">SAVE</button>
+                        </div>
+                        <div class="col-3" ng-if="!options.addBtn">
+                            <button type="button" class="btn btn-primary btn-block"
+                                ng-click="handlers.edit()">EDIT</button>
+                        </div>
+
+                        <div class="col-3">
+                            <button type="button" class="btn btn-secondary btn-block"
+                                ng-click="handlers.back()">CANCEL</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 pl-0 pr-4">
                     <notes list="options.noteList"></notes>
-                </dic>
+                </div>
             </div>
         </div>
     </div>
