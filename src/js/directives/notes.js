@@ -15,7 +15,7 @@ angular.module('crmApp')
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item" ng-repeat="note in list">
-                        <p class="card-text"><small>{{note.remark}}</small></p>
+                        <p class="card-text mb-0"><small>{{note.remark}}</small></p>
                         <p class="card-text font-italic"><small class="text-muted">- by login User  on {{note.createDate}}</small></p>
                     </li>
                 </ul>
