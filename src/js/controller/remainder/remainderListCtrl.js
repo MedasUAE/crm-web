@@ -11,9 +11,11 @@ angular
 
         function init() {
             $scope.options.statuss = dataFactory.getStatuss();
-            $scope.options.customerId = $stateParams["id"];
-            console.log( $scope.options.customerId);
-            remainderFactory.getRemainders($scope.options.customerId)
+           // $scope.options.customerId = $stateParams["id"];
+          //  $scope.options.customer = $stateParams["obj"];
+          //  console.log( $scope.options.customer);
+           // remainderFactory.getRemainders($scope.options.customerId)
+           remainderFactory.getRemainders()
             .then((response)=>{
                 $scope.options.remainderList = response.data.data;
             },function(error){
@@ -23,7 +25,7 @@ angular
       
         }
         function filter(label,value) {
-            remainderFactory.filter($scope.options.customerId,label,value)
+            remainderFactory.filter(label,value)
            .then((response)=>{
                $scope.options.remainderList = response.data.data;
             },function(error){

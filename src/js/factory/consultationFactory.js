@@ -60,6 +60,8 @@ angular.module('crmApp')
          * method to update consultation into the DB.
          */
         function update(data) {
+            let user = JSON.parse(localStorage.getItem("userData"));
+            data.createdBy = {id:user.user_id,name: user.user_label};
               return $http.put(baseUrl + "consultation/" + data.consultationId, data,{headers:setHeaders()})
         }
 
