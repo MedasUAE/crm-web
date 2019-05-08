@@ -1,13 +1,15 @@
 angular
     .module('crmApp')
-    .controller('paymentObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'consultationFactory', 'customerFactory', 'remainderFactory', function ($scope, $state, $stateParams, dataFactory, consultationFactory, customerFactory, remainderFactory) {
+    .controller('treatmentObjCtrl', ['$scope', '$state', '$stateParams', 'dataFactory', 'customerFactory', 'remarkFactory', function ($scope, $state, $stateParams, dataFactory, customerFactory, remarkFactory) {
         $scope.data = {}
         $scope.options = {}
+         $scope.options.noteList = [];
         $scope.handlers = {
             save: save,
             activeClick: activeClick,
-            back: back
-
+            back: back,
+         
+          
         }
 
         init();
@@ -41,9 +43,7 @@ angular
         }
 
         function init() {
-            // ToDo Show existing Installments
-            //ToDo Show pending amount in Amount
-            // Todo Amount should not exceed total amount
+            
             $scope.data["customerId"] = $stateParams.id;
             $scope.options["addBtn"] = true;
             $scope.options.customerData = $stateParams['obj'];

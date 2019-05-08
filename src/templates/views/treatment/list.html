@@ -1,0 +1,54 @@
+<div ng-controller="treatmentListCtrl">
+    <div class="row">
+        <div class="col-md-12 my-3 p-0">
+            <header label="'Lead'" button-label="'New'" icon="'accessibility'" state="'dashboard.lead'"></header>
+
+            <table class="table table-sm table-light table-striped p-0 header-fixed">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">#&nbsp;&nbsp;Name</th>
+                        <th scope="col">Mobile</th>
+                        <!-- <th scope="col">Gender</th>  -->
+                        <th scope="col">ResidenceId</th>
+                        <th scope="col">Nationality</th>
+                        <th scope="col">Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="p-1">
+                            <input type="text" data-ng-change="handlers.filter('fullName',name)" data-ng-model="name" class="form-control form-control-sm">
+                        </td>
+                        <td class="p-1">
+                            <input type="text" data-ng-change="handlers.filter('mobile',mobile)" data-ng-model="mobile" class="form-control form-control-sm">
+                        </td>
+                        <td class="p-1">
+                            <input type="text" data-ng-change="handlers.filter('residenceId',emirateId)" data-ng-model="emirateId"
+                                class="form-control form-control-sm">
+                        </td>
+                    </tr>
+                    <tr ng-repeat="lead in options.leadList" ng-class="{'table-success': lead.fileOpen == 'false'}" class="px-1 ">
+
+                        <td>
+                            {{$index + 1}}. &nbsp;&nbsp; {{lead.demography.fullName}}
+                        </td>
+                        <td>{{lead.contact.mobile[0]}}</td>
+                        <td>{{lead.demography.residenceId}}</td>
+                        <td>{{lead.demography.nationality}}</td>
+                        <!-- <td>{{customer.demography.residenceId}}</td> -->
+                        <!-- <td>{{customer.fileOpen}}</td> -->
+
+                        <td>
+                            <button type="button" id="_launch" class="btn btn-link p-0" data-toggle="tooltip" data-placement="top" title="Start Consultation"
+                                ng-click="handlers.startConsultation(lead)">
+                                <i class="material-icons icon" style="font-size:20px;top:10px;">launch</i>
+                            </button>
+                           
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

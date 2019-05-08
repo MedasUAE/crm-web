@@ -8,7 +8,8 @@ angular
             filter: filter,
             secondConsultation : secondConsultation,
             startPayment,
-            fileOpenRemainder:fileOpenRemainder
+            fileOpenRemainder:fileOpenRemainder,
+            startTreatment:startTreatment
         }
         init();
 
@@ -52,4 +53,9 @@ angular
                  console.log(err);
              })
          }
+         function startTreatment(data) { 
+            // console.log(data);   
+             $state.go('dashboard.treatment',{id: data.customerId._id,obj:data})
+         }
+         
     }]);
