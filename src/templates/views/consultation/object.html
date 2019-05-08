@@ -1,11 +1,11 @@
 <div ng-controller="consultationObjCtrl">
     <div class="row">
-        <div class="col-md-12 my-3 p-0">
+        <div class="col-12 my-3 p-0">
             <!-- header directive -->
             <header label="'Add Consultation'" icon="'note_add'"></header>
 
             <div class="row pt-3">
-                <div class="col-md-12">
+                <div class="col-12">
                     <demography data="options.customerData"></demography>
                 </div>
             </div>
@@ -16,54 +16,64 @@
                         <div class="form-group">
                             <label for="hairType">Hair Type</label>
                             <br>
-                            <div class="col-4 btn-group btn-block btn-group-sm px-0" role="group" aria-label="Basic example">
+                            <div class="col-4 btn-group btn-block btn-group-sm px-0" role="group"
+                                aria-label="Basic example">
                                 <button type="button" class="btn btn-outline-secondary"
-                                    ng-class="{active: data.hairType == 'A' }" ng-click="handlers.activeClick('A')">A</button>
+                                    ng-class="{active: data.hairType == 'A' }"
+                                    ng-click="handlers.activeClick('A')">A</button>
                                 <button type="button" class="btn btn-outline-secondary"
-                                    ng-class="{active: data.hairType == 'B' }" ng-click="handlers.activeClick('B')">B</button>
+                                    ng-class="{active: data.hairType == 'B' }"
+                                    ng-click="handlers.activeClick('B')">B</button>
                                 <button type="button" class="btn btn-outline-secondary"
-                                    ng-class="{active: data.hairType == 'C' }" ng-click="handlers.activeClick('C')">C</button>
+                                    ng-class="{active: data.hairType == 'C' }"
+                                    ng-click="handlers.activeClick('C')">C</button>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="NoOfHair">
                                 No of Hair
                             </label>
-                            <input type="text" ng-model="data.noOfHair" class="form-control form-control-sm col-4" id="noOfHair"
-                                placeholder="No Of Hair">
+                            <input type="text" ng-model="data.noOfHair" class="form-control form-control-sm col-4"
+                                id="noOfHair" placeholder="No Of Hair">
                         </div>
                         <div class="form-group">
                             <label for="ImplanyType">
                                 Implant Type
                             </label>
-                            <input type="text" ng-model="data.implantType" class="form-control form-control-sm col-6" id="implantType" placeholder="Implant Type">
+                            <input type="text" ng-model="data.implantType" class="form-control form-control-sm col-6"
+                                id="implantType" placeholder="Implant Type">
                         </div>
                         <div class="form-group">
                             <label for="ImplanyArea">
                                 Implant Area
                             </label>
-                            <input type="text" ng-model="data.implantArea" class="form-control form-control-sm col-6" id="implantArea" placeholder="Implant Area">
+                            <input type="text" ng-model="data.implantArea" class="form-control form-control-sm col-6"
+                                id="implantArea" placeholder="Implant Area">
                         </div>
                         <div class="form-group">
                             <label for="remarks">
                                 Remarks
                             </label>
-                            <textarea ng-model="data.remark" class="form-control form-control-sm col-8" rows="3" id="remark"></textarea>
+                            <textarea ng-model="data.remark" class="form-control form-control-sm col-8" rows="3"
+                                id="remark"></textarea>
                         </div>
                     </form>
                     <!-- buttons -->
                     <div class="row py-2">
-                            <div class="col-2 offset-md-1 px-1" ng-if="options.addBtn">
-                                <button type="button" class="btn btn-primary btn-block" ng-click="handlers.save()">SAVE</button>
-                            </div>
-                            <div class="col-2 offset-md-1 px-1" ng-if="!options.addBtn">
-                                    <button type="button" class="btn btn-primary btn-block" ng-click="handlers.edit()">EDIT</button>
-                            </div>
-                            
-                            <div class="col-2 px-1">
-                                <button type="button" class="btn btn-secondary btn-block" ng-click="handlers.back()">CANCEL</button>
-                            </div>
+                        <div class="col-2 offset-md-1 px-1" ng-if="options.addBtn">
+                            <button type="button" class="btn btn-primary btn-block"
+                                ng-click="handlers.save()">SAVE</button>
                         </div>
+                        <div class="col-2 offset-md-1 px-1" ng-if="!options.addBtn">
+                            <button type="button" class="btn btn-primary btn-block"
+                                ng-click="handlers.edit()">EDIT</button>
+                        </div>
+
+                        <div class="col-2 px-1">
+                            <button type="button" class="btn btn-secondary btn-block"
+                                ng-click="handlers.back()">CANCEL</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- right -->
                 <div class="col-4 pt-3 pl-0">
